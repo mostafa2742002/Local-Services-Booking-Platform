@@ -15,8 +15,10 @@
                 Local Services
             </a>
 
+
             <div class="nav-links">
                 <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('services.list_services') }}">Services</a>
 
                 {% if session.get("user_id") %}
                     <span class="user-name">
