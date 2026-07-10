@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <a href="{{ url_for('services.show_provider_services') }}" class="back-link">
+        ← Back to my services
+    </a>
+
+    <h1>Create Service</h1>
+    <p>Add a new service that customers can book.</p>
+</section>
+
+<section class="form-card">
+    <form action="{{ url_for('services.submit_create_service_form') }}" method="post" class="service-form">
+        <div class="form-group">
+            <label for="name">Service Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ name or '' }}"
+                placeholder="Example: Home Cleaning"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                rows="5"
+                placeholder="Describe what this service includes"
+            >{{ description or '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input
+                type="text"
+                id="category"
+                name="category"
+                value="{{ category or '' }}"
+                placeholder="Example: Cleaning"
+            >
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input
+                    type="text"
+                    id="price"
+                    name="price"
+                    value="{{ price or '' }}"
+                    placeholder="Example: 250"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="duration_minutes">Duration Minutes</label>
+                <input
+                    type="text"
+                    id="duration_minutes"
+                    name="duration_minutes"
+                    value="{{ duration_minutes or '' }}"
+                    placeholder="Example: 60"
+                >
+            </div>
+        </div>
+
+        <button type="submit" class="primary-btn">
+            Create Service
+        </button>
+    </form>
+</section>
+
+{% endblock %}
