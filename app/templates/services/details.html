@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <a href="{{ url_for('services.list_services') }}" class="back-link">
+        ← Back to services
+    </a>
+
+    <h1>{{ service.name }}</h1>
+    <p>{{ service.description }}</p>
+</section>
+
+<section class="details-card">
+    <div class="details-row">
+        <strong>Category</strong>
+        <span>{{ service.category }}</span>
+    </div>
+
+    <div class="details-row">
+        <strong>Price</strong>
+        <span>{{ service.price }} EGP</span>
+    </div>
+
+    <div class="details-row">
+        <strong>Duration</strong>
+        <span>{{ service.duration_minutes }} minutes</span>
+    </div>
+
+    <div class="details-actions">
+        {% if session.get("user_id") %}
+            <a href="#" class="primary-btn">Book This Service</a>
+        {% else %}
+            <a href="{{ url_for('users.show_login_page') }}" class="primary-btn">
+                Login to Book
+            </a>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

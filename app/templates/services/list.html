@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <h1>Available Services</h1>
+    <p>Browse local services and choose the one you need.</p>
+</section>
+
+<section class="services-list">
+    {% if services %}
+        {% for service in services %}
+            <article class="service-card">
+                <div>
+                    <h2>{{ service.name }}</h2>
+                    <p>{{ service.description }}</p>
+
+                    <div class="service-meta">
+                        <span>{{ service.category }}</span>
+                        <span>{{ service.duration_minutes }} minutes</span>
+                        <span>{{ service.price }} EGP</span>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('services.show_service_details', service_id=service.id) }}" class="primary-btn">
+                    View Details
+                </a>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h2>No services available yet</h2>
+            <p>Services will appear here when providers add them.</p>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock %}
