@@ -1,0 +1,65 @@
+.auth-page {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.auth-card h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: #111827;
+}
+
+.auth-card p {
+    margin: 0 0 24px;
+    color: #6b7280;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-weight: 700;
+    color: #374151;
+}
+
+.form-group input {
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.auth-switch {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.auth-switch a {
+    color: #2563eb;
+    font-weight: 700;
+}
