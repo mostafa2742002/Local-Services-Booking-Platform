@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="home-hero">
+    <div class="home-hero-content">
+        <h1>Book trusted local services easily</h1>
+        <p>
+            Find service providers, send booking requests, and track your bookings from one place.
+        </p>
+
+        <div class="home-actions">
+            <a href="#" class="primary-btn">Browse Services</a>
+
+            {% if not session.get("user_id") %}
+                <a href="{{ url_for('users.show_register_page') }}" class="secondary-btn">
+                    Create Account
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="home-summary">
+    <div class="summary-card">
+        <h2>Customers</h2>
+        <p>Browse services and create booking requests.</p>
+    </div>
+
+    <div class="summary-card">
+        <h2>Providers</h2>
+        <p>Accept, reject, start, and complete bookings.</p>
+    </div>
+
+    <div class="summary-card">
+        <h2>Admins</h2>
+        <p>View users, services, bookings, and reviews.</p>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from app.user.api.user_routes import user_bp
 
 
@@ -20,4 +20,4 @@ def register_pages(app):
     
     @app.get("/")
     def home():
-        return "Local Services Booking Platform is running"
+        return render_template("home.html")
