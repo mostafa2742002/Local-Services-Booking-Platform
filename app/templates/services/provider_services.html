@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <h1>My Services</h1>
+    <p>Manage the services you provide to customers.</p>
+
+    <a href="{{ url_for('services.show_create_service_page') }}" class="primary-btn">
+        Add New Service
+    </a>
+</section>
+
+<section class="services-list">
+    {% if services %}
+        {% for service in services %}
+            <article class="service-card">
+                <div>
+                    <h2>{{ service.name }}</h2>
+                    <p>{{ service.description }}</p>
+
+                    <div class="service-meta">
+                        <span>{{ service.category }}</span>
+                        <span>{{ service.duration_minutes }} minutes</span>
+                        <span>{{ service.price }} EGP</span>
+
+                        {% if service.is_active %}
+                            <span>Active</span>
+                        {% else %}
+                            <span>Inactive</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h2>You have no services yet</h2>
+            <p>Create your first service so customers can book it.</p>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock %}
