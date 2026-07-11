@@ -5,7 +5,7 @@
         "name": "Home Cleaning",
         "description": "General home cleaning service for apartments and small homes.",
         "category": "Cleaning",
-        "price": 250,
+        "price": 250.0,
         "duration_minutes": 90,
         "is_active": true,
         "created_at": "2026-01-01T10:00:00",
@@ -17,10 +17,22 @@
         "name": "AC Maintenance",
         "description": "Air conditioner inspection, cleaning, and basic maintenance.",
         "category": "Maintenance",
-        "price": 400,
+        "price": 400.0,
         "duration_minutes": 60,
         "is_active": true,
         "created_at": "2026-01-01T10:00:00",
         "updated_at": "2026-01-01T10:00:00"
+    },
+    {
+        "id": "549b3cc3-61df-4b8e-9f8d-922379ac7b53",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
+        "name": "Plumbing Repair",
+        "description": "Fix common plumbing problems at home.",
+        "category": "Plumbing",
+        "price": 300.0,
+        "duration_minutes": 60,
+        "is_active": true,
+        "created_at": "2026-07-11T13:39:00",
+        "updated_at": "2026-07-11T13:39:00"
     }
 ]
