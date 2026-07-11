@@ -1,0 +1,15 @@
+[
+    {
+        "id": "d9772825-e07b-4e12-a082-bb9af68b42ad",
+        "customer_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "provider_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "service_id": "11111111-1111-1111-1111-111111111111",
+        "booking_date": "2026-07-15",
+        "booking_time": "17:27",
+        "address": "giza - el nasr street",
+        "problem_description": "i have four rooms ",
+        "status": "PENDING",
+        "created_at": "2026-07-11T14:25:52",
+        "updated_at": "2026-07-11T14:25:52"
+    }
+]
