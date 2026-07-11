@@ -33,7 +33,12 @@
 
     <div class="details-actions">
         {% if session.get("user_id") %}
-            <a href="#" class="primary-btn">Book This Service</a>
+            <a
+                href="{{ url_for('bookings.show_create_booking_page', service_id=service.id) }}"
+                class="primary-btn"
+            >
+                Book This Service
+            </a>
         {% else %}
             <a href="{{ url_for('users.show_login_page') }}" class="primary-btn">
                 Login to Book
