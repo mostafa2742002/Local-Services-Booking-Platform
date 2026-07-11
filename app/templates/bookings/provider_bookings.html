@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bookings.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <h1>Booking Requests</h1>
+    <p>View and manage customer booking requests.</p>
+</section>
+
+<section class="bookings-list">
+    {% if bookings %}
+        {% for booking in bookings %}
+            <article class="booking-card">
+                <div class="booking-main">
+                    <div>
+                        <h2>Customer Booking</h2>
+                        <p>{{ booking.problem_description or "No description provided." }}</p>
+                    </div>
+
+                    <span class="status-badge status-{{ booking.status.value | lower }}">
+                        {{ booking.status.value }}
+                    </span>
+                </div>
+
+                <div class="booking-details">
+                    <div>
+                        <strong>Date</strong>
+                        <span>{{ booking.booking_date }}</span>
+                    </div>
+
+                    <div>
+                        <strong>Time</strong>
+                        <span>{{ booking.booking_time }}</span>
+                    </div>
+
+                    <div>
+                        <strong>Address</strong>
+                        <span>{{ booking.address }}</span>
+                    </div>
+
+                    <div>
+                        <strong>Service ID</strong>
+                        <span>{{ booking.service_id }}</span>
+                    </div>
+                </div>
+
+                <div class="booking-actions">
+                    {% if booking.status.value == "PENDING" %}
+                        <form
+                            action="{{ url_for('bookings.accept_provider_booking', booking_id=booking.id) }}"
+                            method="post"
+                        >
+                            <button type="submit" class="primary-btn">
+                                Accept
+                            </button>
+                        </form>
+
+                        <form
+                            action="{{ url_for('bookings.reject_provider_booking', booking_id=booking.id) }}"
+                            method="post"
+                        >
+                            <button type="submit" class="danger-btn">
+                                Reject
+                            </button>
+                        </form>
+                    {% endif %}
+
+                    {% if booking.status.value == "ACCEPTED" %}
+                        <form
+                            action="{{ url_for('bookings.start_provider_booking', booking_id=booking.id) }}"
+                            method="post"
+                        >
+                            <button type="submit" class="primary-btn">
+                                Start
+                            </button>
+                        </form>
+                    {% endif %}
+
+                    {% if booking.status.value == "IN_PROGRESS" %}
+                        <form
+                            action="{{ url_for('bookings.complete_provider_booking', booking_id=booking.id) }}"
+                            method="post"
+                        >
+                            <button type="submit" class="primary-btn">
+                                Complete
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h2>No booking requests yet</h2>
+            <p>Customer bookings will appear here when they book your services.</p>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock %}
