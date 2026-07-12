@@ -16,5 +16,14 @@
         "role": "PROVIDER",
         "created_at": "2026-07-11T13:37:20",
         "updated_at": "2026-07-11T13:37:20"
+    },
+    {
+        "id": "fa9eedc4-fba8-40ac-91d6-ce9b4ae1a3cd",
+        "name": "admin",
+        "email": "admin@test.com",
+        "password_hash": "scrypt:32768:8:1$bwdBjjkY0w3wlMtd$42856c46a89308a7f13cb0a426ad795244c5e49e8cf85e60111447805999b117b4faa0cabe43f15767cf5f521dc5a52ca2f20da87821e2f0c22248a327a9dfc1",
+        "role": "ADMIN",
+        "created_at": "2026-07-12T14:32:29",
+        "updated_at": "2026-07-12T14:32:29"
     }
 ]
