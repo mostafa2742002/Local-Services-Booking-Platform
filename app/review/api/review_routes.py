@@ -71,6 +71,19 @@ def submit_create_review_form(booking_id):
 
     try:
         booking = get_booking_details(parsed_booking_id)
+        customer_id = UUID(session["user_id"])
+
+        if booking.customer_id != customer_id:
+            flash("You are not allowed to review this booking.", "error")
+            return redirect(url_for("bookings.show_customer_bookings"))
+
+        if booking.status != BookingStatus.COMPLETED:
+            flash("Only completed bookings can be reviewed.", "error")
+            return redirect(url_for("bookings.show_customer_bookings"))
+
+        if booking_has_review(booking.id):
+            flash("Booking already reviewed.", "error")
+            return redirect(url_for("bookings.show_customer_bookings"))
 
     except ValueError as error:
         flash(str(error), "error")
