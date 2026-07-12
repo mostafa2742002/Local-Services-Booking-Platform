@@ -48,17 +48,27 @@
                     </div>
                 </div>
 
-                {% if booking.status.value == "PENDING" %}
-                    <form
-                        action="{{ url_for('bookings.cancel_customer_booking', booking_id=booking.id) }}"
-                        method="post"
-                        class="booking-actions"
-                    >
-                        <button type="submit" class="danger-btn">
-                            Cancel Booking
-                        </button>
-                    </form>
-                {% endif %}
+                <div class="booking-actions">
+                    {% if booking.status.value == "PENDING" %}
+                        <form
+                            action="{{ url_for('bookings.cancel_customer_booking', booking_id=booking.id) }}"
+                            method="post"
+                        >
+                            <button type="submit" class="danger-btn">
+                                Cancel Booking
+                            </button>
+                        </form>
+                    {% endif %}
+
+                    {% if booking.status.value == "COMPLETED" %}
+                        <a
+                            href="{{ url_for('reviews.show_create_review_page', booking_id=booking.id) }}"
+                            class="primary-btn"
+                        >
+                            Add Review
+                        </a>
+                    {% endif %}
+                </div>
             </article>
         {% endfor %}
     {% else %}

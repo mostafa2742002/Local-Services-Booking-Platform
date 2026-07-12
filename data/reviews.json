@@ -1,0 +1,13 @@
+[
+    {
+        "id": "abca9833-357d-4505-90b4-db6a43fb6eb4",
+        "booking_id": "f9a1d60b-64ad-4f29-af03-5c14362e7535",
+        "customer_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
+        "service_id": "936d2bfd-b71e-4938-a57d-e402f166e678",
+        "rating": 5,
+        "comment": "very excellent",
+        "created_at": "2026-07-12T11:47:10",
+        "updated_at": "2026-07-12T11:47:10"
+    }
+]
