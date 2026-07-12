@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reviews.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <a href="{{ url_for('bookings.show_customer_bookings') }}" class="back-link">
+        ← Back to my bookings
+    </a>
+
+    <h1>Add Review</h1>
+    <p>Review your completed booking for: <strong>{{ service_name }}</strong></p>
+</section>
+
+<section class="review-card">
+    <div class="booking-summary">
+        <h2>Booking Summary</h2>
+
+        <div class="summary-grid">
+            <div>
+                <strong>Service</strong>
+                <span>{{ service_name }}</span>
+            </div>
+
+            <div>
+                <strong>Date</strong>
+                <span>{{ booking.booking_date }}</span>
+            </div>
+
+            <div>
+                <strong>Time</strong>
+                <span>{{ booking.booking_time }}</span>
+            </div>
+
+            <div>
+                <strong>Status</strong>
+                <span>{{ booking.status.value }}</span>
+            </div>
+        </div>
+    </div>
+
+    <form
+        action="{{ url_for('reviews.submit_create_review_form', booking_id=booking.id) }}"
+        method="post"
+        class="review-form"
+    >
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating">
+                <option value="">Choose rating</option>
+                <option value="5" {% if rating == "5" %}selected{% endif %}>5 - Excellent</option>
+                <option value="4" {% if rating == "4" %}selected{% endif %}>4 - Very Good</option>
+                <option value="3" {% if rating == "3" %}selected{% endif %}>3 - Good</option>
+                <option value="2" {% if rating == "2" %}selected{% endif %}>2 - Fair</option>
+                <option value="1" {% if rating == "1" %}selected{% endif %}>1 - Poor</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea
+                id="comment"
+                name="comment"
+                rows="5"
+                placeholder="Write your feedback about the service"
+            >{{ comment or '' }}</textarea>
+        </div>
+
+        <button type="submit" class="primary-btn">
+            Submit Review
+        </button>
+    </form>
+</section>
+
+{% endblock %}

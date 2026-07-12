@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reviews.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <h1>My Reviews</h1>
+    <p>View the reviews you submitted for completed bookings.</p>
+</section>
+
+<section class="reviews-list">
+    {% if review_views %}
+        {% for review_view in review_views %}
+            <article class="review-card">
+                <div class="review-main">
+                    <div>
+                        <h2>{{ review_view.service_name }}</h2>
+                        <p>{{ review_view.review.comment or "No comment provided." }}</p>
+                    </div>
+
+                    <span class="rating-badge">
+                        {{ review_view.review.rating }}/5
+                    </span>
+                </div>
+
+                <div class="review-details">
+                    <div>
+                        <strong>Booking ID</strong>
+                        <span>{{ review_view.review.booking_id }}</span>
+                    </div>
+
+                    <div>
+                        <strong>Created At</strong>
+                        <span>{{ review_view.review.created_at }}</span>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h2>No reviews yet</h2>
+            <p>Your reviews will appear here after reviewing completed bookings.</p>
+
+            <a href="{{ url_for('bookings.show_customer_bookings') }}" class="primary-btn">
+                Go to My Bookings
+            </a>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock %}

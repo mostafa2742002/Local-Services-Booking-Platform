@@ -23,6 +23,7 @@
                 {% if session.get("user_id") %}
                     {% if session.get("user_role") == "CUSTOMER" %}
                         <a href="{{ url_for('bookings.show_customer_bookings') }}">My Bookings</a>
+                        <a href="{{ url_for('reviews.show_customer_reviews') }}">My Reviews</a>
                     {% endif %}
 
                     {% if session.get("user_role") == "PROVIDER" %}
