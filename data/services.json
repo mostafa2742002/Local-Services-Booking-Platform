@@ -34,5 +34,17 @@
         "is_active": true,
         "created_at": "2026-07-11T13:39:00",
         "updated_at": "2026-07-11T13:39:00"
+    },
+    {
+        "id": "936d2bfd-b71e-4938-a57d-e402f166e678",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
+        "name": "Electrical Repair",
+        "description": "Fix basic home electrical problems.",
+        "category": "Electrical",
+        "price": 350.0,
+        "duration_minutes": 60,
+        "is_active": true,
+        "created_at": "2026-07-12T09:17:44",
+        "updated_at": "2026-07-12T09:17:44"
     }
 ]

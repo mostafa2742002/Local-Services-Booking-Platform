@@ -1,0 +1,28 @@
+[
+    {
+        "id": "d9772825-e07b-4e12-a082-bb9af68b42ad",
+        "customer_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "provider_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "service_id": "11111111-1111-1111-1111-111111111111",
+        "booking_date": "2026-07-15",
+        "booking_time": "17:27",
+        "address": "giza - el nasr street",
+        "problem_description": "i have four rooms ",
+        "status": "PENDING",
+        "created_at": "2026-07-11T14:25:52",
+        "updated_at": "2026-07-11T14:25:52"
+    },
+    {
+        "id": "f9a1d60b-64ad-4f29-af03-5c14362e7535",
+        "customer_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
+        "service_id": "936d2bfd-b71e-4938-a57d-e402f166e678",
+        "booking_date": "2026-07-14",
+        "booking_time": "12:21",
+        "address": "Cairo, Nasr City",
+        "problem_description": "Light switch is not working.",
+        "status": "COMPLETED",
+        "created_at": "2026-07-12T09:18:58",
+        "updated_at": "2026-07-12T09:20:24"
+    }
+]
