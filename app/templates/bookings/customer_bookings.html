@@ -8,59 +8,50 @@
 
 <section class="page-header">
     <h1>My Bookings</h1>
-    <p>View and manage your booking requests.</p>
+    <p>Track your booking requests and their current status.</p>
 </section>
 
-<section class="bookings-list">
+<section class="booking-list">
     {% if bookings %}
         {% for booking in bookings %}
-            <article class="booking-card">
-                <div class="booking-main">
-                    <div>
-                        <h2>Booking Request</h2>
-                        <p>{{ booking.problem_description or "No description provided." }}</p>
-                    </div>
-
-                    <span class="status-badge status-{{ booking.status.value | lower }}">
-                        {{ booking.status.value }}
+            <div class="booking-card">
+                <div class="booking-card-header">
+                    <h2>{{ booking.booking_date }} at {{ booking.booking_time }}</h2>
+                    <span class="booking-status">
+                        {{ booking.get_status_label() }}
                     </span>
                 </div>
 
-                <div class="booking-details">
-                    <div>
-                        <strong>Date</strong>
-                        <span>{{ booking.booking_date }}</span>
-                    </div>
+                <div class="booking-info">
+                    <p>
+                        <strong>Address:</strong>
+                        {{ booking.address }}
+                    </p>
 
-                    <div>
-                        <strong>Time</strong>
-                        <span>{{ booking.booking_time }}</span>
-                    </div>
+                    <p>
+                        <strong>Problem:</strong>
+                        {{ booking.problem_description or "No description provided." }}
+                    </p>
 
-                    <div>
-                        <strong>Address</strong>
-                        <span>{{ booking.address }}</span>
-                    </div>
-
-                    <div>
-                        <strong>Service ID</strong>
-                        <span>{{ booking.service_id }}</span>
-                    </div>
+                    <p>
+                        <strong>Created At:</strong>
+                        {{ booking.created_at }}
+                    </p>
                 </div>
 
                 <div class="booking-actions">
-                    {% if booking.status.value == "PENDING" %}
+                    {% if booking.can_customer_cancel() %}
                         <form
                             action="{{ url_for('bookings.cancel_customer_booking', booking_id=booking.id) }}"
                             method="post"
                         >
                             <button type="submit" class="danger-btn">
-                                Cancel Booking
+                                Cancel
                             </button>
                         </form>
                     {% endif %}
 
-                    {% if booking.status.value == "COMPLETED" %}
+                    {% if booking.can_customer_review() %}
                         <a
                             href="{{ url_for('reviews.show_create_review_page', booking_id=booking.id) }}"
                             class="primary-btn"
@@ -69,13 +60,11 @@
                         </a>
                     {% endif %}
                 </div>
-            </article>
+            </div>
         {% endfor %}
     {% else %}
-        <div class="empty-state">
-            <h2>No bookings yet</h2>
-            <p>You have not created any booking requests.</p>
-
+        <div class="empty-card">
+            <p>You do not have any bookings yet.</p>
             <a href="{{ url_for('services.list_services') }}" class="primary-btn">
                 Browse Services
             </a>
