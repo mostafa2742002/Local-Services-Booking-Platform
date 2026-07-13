@@ -50,5 +50,18 @@
         "is_active": true,
         "created_at": "2026-07-12T09:17:44",
         "updated_at": "2026-07-12T09:17:44"
+    },
+    {
+        "id": "15cd53a7-fb46-437c-9c58-543d474c4d53",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
+        "name": "fix game controllers",
+        "description": "i can fix any lag in any controller",
+        "category": "gaming",
+        "price": 222.0,
+        "duration_minutes": 30,
+        "image_filename": "game repair.jpg",
+        "is_active": true,
+        "created_at": "2026-07-13T17:08:31",
+        "updated_at": "2026-07-13T17:08:31"
     }
 ]

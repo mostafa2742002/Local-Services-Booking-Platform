@@ -69,13 +69,15 @@ def submit_create_service_form():
     category = request.form.get("category")
     price = request.form.get("price")
     duration_minutes = request.form.get("duration_minutes")
+    image = request.files.get("image")
 
     errors = validate_create_service_data(
         name=name,
         description=description,
         category=category,
         price=price,
-        duration_minutes=duration_minutes
+        duration_minutes=duration_minutes,
+        image=image
     )
 
     if errors:
@@ -99,7 +101,8 @@ def submit_create_service_form():
         description=description.strip(),
         category=category.strip(),
         price=float(price),
-        duration_minutes=int(duration_minutes)
+        duration_minutes=int(duration_minutes),
+        image=image
     )
 
     flash("Service created successfully.", "success")
