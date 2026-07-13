@@ -17,6 +17,7 @@ def service_to_dict(service: LocalService) -> dict:
         "category": service.category,
         "price": service.price,
         "duration_minutes": service.duration_minutes,
+        "image_filename": service.image_filename,
         "is_active": service.is_active,
         "created_at": service.created_at,
         "updated_at": service.updated_at
@@ -32,6 +33,7 @@ def dict_to_service(data: dict) -> LocalService:
         category=data["category"],
         price=float(data["price"]),
         duration_minutes=int(data["duration_minutes"]),
+        image_filename=data["image_filename"],
         is_active=bool(data["is_active"]),
         created_at=data["created_at"],
         updated_at=data["updated_at"]
