@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from app.admin.application.admin_dashboard_service import get_admin_dashboard_summary
 from app.user.api.user_routes import user_bp
 from app.service.api.service_routes import service_bp
 from app.booking.api.booking_routes import booking_bp
@@ -25,4 +26,5 @@ def register_blueprints(app):
 def register_pages(app):
     @app.get("/")
     def home():
-        return render_template("home.html")
+        summary = get_admin_dashboard_summary()
+        return render_template("home.html", summary=summary)

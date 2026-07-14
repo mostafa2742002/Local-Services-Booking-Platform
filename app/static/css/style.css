@@ -122,3 +122,17 @@ a {
 .primary-btn:hover {
     background: #1d4ed8;
 }
+
+
+.site-footer {
+    background: #1f2937;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 14px;
+}
