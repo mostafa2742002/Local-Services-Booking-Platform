@@ -2,6 +2,7 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+    <script src="{{ url_for('static', filename='js/services.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -40,13 +41,9 @@
 
         <div class="form-group">
             <label for="category">Category</label>
-            <input
-                type="text"
-                id="category"
-                name="category"
-                value="{{ category or '' }}"
-                placeholder="Example: Cleaning"
-            >
+            <select id="category" name="category" required>
+                <option value="" disabled selected>Select a category...</option>
+            </select>
         </div>
 
         <div class="form-row">

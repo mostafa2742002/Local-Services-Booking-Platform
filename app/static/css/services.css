@@ -211,6 +211,7 @@
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
     padding: 12px 14px;
     border: 1px solid #d1d5db;
