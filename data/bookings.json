@@ -34,8 +34,8 @@
         "booking_time": "13:28",
         "address": "Cairo, Nasr City",
         "problem_description": "it will be saved in the local storage ",
-        "status": "PENDING",
+        "status": "REJECTED",
         "created_at": "2026-07-13T09:24:18",
-        "updated_at": "2026-07-13T09:24:18"
+        "updated_at": "2026-07-14T12:32:37"
     }
 ]

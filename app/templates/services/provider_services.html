@@ -19,6 +19,7 @@
     {% if services %}
         {% for service in services %}
             <article class="service-card">
+                <img src="{{ url_for('static', filename='images/services/' + service.image_filename) }}" alt="{{ service.name }}">
                 <div>
                     <h2>{{ service.name }}</h2>
                     <p>{{ service.description }}</p>
