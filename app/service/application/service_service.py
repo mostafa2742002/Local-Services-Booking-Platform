@@ -11,8 +11,8 @@ from app.service.infrastructure.service_repository import (
 )
 
 
-def get_available_services() -> list[LocalService]:
-    return find_active_services()
+def get_available_services(query: str = "", category: str = "") -> list[LocalService]:
+    return find_active_services(query=query, category=category)
 
 
 def get_service_details(service_id: UUID) -> LocalService:
@@ -59,3 +59,9 @@ def create_local_service(
     )
 
     return save(service)
+
+
+def get_all_categories() -> list[str]:
+    services = find_active_services()
+    categories = [service.category for service in services]
+    return sorted(categories)

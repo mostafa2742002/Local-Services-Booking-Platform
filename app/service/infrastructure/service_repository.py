@@ -67,14 +67,24 @@ def find_all() -> list[LocalService]:
     return load_services()
 
 
-def find_active_services() -> list[LocalService]:
+def find_active_services(query: str = "", category: str = "") -> list[LocalService]:
     services = load_services()
 
-    return [
-        service
-        for service in services
-        if service.is_active
-    ]
+    filtered_services = []
+
+    for service in services:
+        if not service.is_active:
+            continue
+
+        if query and query.lower() not in service.name.lower():
+            continue
+
+        if category and category.lower() != service.category.lower():
+            continue
+
+        filtered_services.append(service)
+
+    return filtered_services
 
 
 def find_by_id(service_id: UUID) -> LocalService | None:
