@@ -14,10 +14,23 @@ def make_service(is_active=True):
         category="Cleaning",
         price=250.0,
         duration_minutes=60,
+        image_filename="home_cleaning.jpg",
         is_active=is_active,
         created_at="2026-01-01T10:00:00",
         updated_at="2026-01-01T10:00:00"
     )
+
+
+def make_image(filename="plumbing_repair.jpg"):
+    class FakeImage:
+        def __init__(self, name):
+            self.filename = name
+            self.saved_path = None
+
+        def save(self, path):
+            self.saved_path = path
+
+    return FakeImage(filename)
 
 
 def test_get_available_services_returns_active_services(monkeypatch):
@@ -26,7 +39,7 @@ def test_get_available_services_returns_active_services(monkeypatch):
         make_service(is_active=True)
     ]
 
-    def fake_find_active_services():
+    def fake_find_active_services(query="", category=""):
         return active_services
 
     monkeypatch.setattr(
@@ -85,6 +98,7 @@ def test_create_local_service_creates_active_service(monkeypatch):
     )
 
     provider_id = uuid4()
+    image = make_image()
 
     service = service_service.create_local_service(
         provider_id=provider_id,
@@ -92,7 +106,8 @@ def test_create_local_service_creates_active_service(monkeypatch):
         description="Fix common plumbing problems at home.",
         category="Plumbing",
         price=300.0,
-        duration_minutes=60
+        duration_minutes=60,
+        image=image
     )
 
     assert service.provider_id == provider_id
@@ -101,5 +116,7 @@ def test_create_local_service_creates_active_service(monkeypatch):
     assert service.category == "Plumbing"
     assert service.price == 300.0
     assert service.duration_minutes == 60
+    assert service.image_filename == image.filename
     assert service.is_active is True
     assert len(saved_services) == 1
+    assert image.saved_path.endswith(image.filename)
