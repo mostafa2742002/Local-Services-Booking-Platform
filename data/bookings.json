@@ -37,5 +37,18 @@
         "status": "REJECTED",
         "created_at": "2026-07-13T09:24:18",
         "updated_at": "2026-07-14T12:32:37"
+    },
+    {
+        "id": "03bad7c1-b8ca-423c-b538-0a60e70c00d0",
+        "customer_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
+        "service_id": "bb59b04b-0b67-44a2-9bf4-2b0cdf883844",
+        "booking_date": "2026-07-17",
+        "booking_time": "12:48",
+        "address": "Cairo, Nasr City",
+        "problem_description": "plumping issue",
+        "status": "COMPLETED",
+        "created_at": "2026-07-15T09:45:11",
+        "updated_at": "2026-07-15T09:46:01"
     }
 ]
