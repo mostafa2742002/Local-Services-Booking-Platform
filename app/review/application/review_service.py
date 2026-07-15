@@ -2,6 +2,7 @@ from datetime import datetime
 from uuid import UUID, uuid4
 
 from app.booking.application.booking_service import get_booking_details
+from app.service.application.service_service import get_service_name    
 from app.booking.domain.booking_status import BookingStatus
 from app.review.domain.review import Review
 from app.review.infrastructure.review_repository import (
@@ -17,7 +18,8 @@ def create_review(
     customer_id: UUID,
     booking_id: UUID,
     rating: int,
-    comment: str
+    comment: str,
+    serviceName: str
 ) -> Review:
     booking = get_booking_details(booking_id)
 
@@ -40,6 +42,7 @@ def create_review(
         customer_id=booking.customer_id,
         provider_id=booking.provider_id,
         service_id=booking.service_id,
+        service_name=serviceName,
         rating=rating,
         comment=comment or "",
         created_at=now,

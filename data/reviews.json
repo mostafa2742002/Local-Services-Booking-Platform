@@ -1,24 +1,14 @@
 [
     {
-        "id": "abca9833-357d-4505-90b4-db6a43fb6eb4",
-        "booking_id": "f9a1d60b-64ad-4f29-af03-5c14362e7535",
+        "id": "869b77b8-bd3a-47c9-bcec-c1a4b16e8ada",
+        "booking_id": "c615570b-7e89-4143-a347-52f532372dff",
         "customer_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
         "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
-        "service_id": "936d2bfd-b71e-4938-a57d-e402f166e678",
-        "rating": 5,
-        "comment": "very excellent",
-        "created_at": "2026-07-12T11:47:10",
-        "updated_at": "2026-07-12T11:47:10"
-    },
-    {
-        "id": "270646c7-3c2e-4e49-b9d1-85b99a1d125b",
-        "booking_id": "03bad7c1-b8ca-423c-b538-0a60e70c00d0",
-        "customer_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
-        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
-        "service_id": "bb59b04b-0b67-44a2-9bf4-2b0cdf883844",
-        "rating": 4,
-        "comment": "wow",
-        "created_at": "2026-07-15T09:46:30",
-        "updated_at": "2026-07-15T09:46:30"
+        "service_id": "15cd53a7-fb46-437c-9c58-543d474c4d53",
+        "serviceName": "fix game controllers",
+        "rating": 1,
+        "comment": "poor",
+        "created_at": "2026-07-15T14:57:05",
+        "updated_at": "2026-07-15T14:57:05"
     }
 ]

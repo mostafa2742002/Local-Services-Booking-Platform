@@ -88,3 +88,12 @@ def delete_service_by_id(service_id: UUID) -> None:
         raise ValueError("Service not found")
 
     delete(service)
+
+
+def get_service_name(service_id: UUID) -> str:
+    service = find_by_id(service_id)
+
+    if service is None:
+        raise ValueError("Service not found")
+
+    return service.name
