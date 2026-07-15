@@ -84,3 +84,16 @@
     margin: 0;
     color: #6b7280;
 }
+
+.delete-btn {
+    color: #ef4444;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.toggle-btn {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 10px;
+}

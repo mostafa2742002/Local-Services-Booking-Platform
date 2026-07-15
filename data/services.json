@@ -8,9 +8,9 @@
         "price": 250.0,
         "duration_minutes": 90,
         "image_filename": "Home Cleaning.jpg",
-        "is_active": true,
+        "is_active": false,
         "created_at": "2026-01-01T10:00:00",
-        "updated_at": "2026-01-01T10:00:00"
+        "updated_at": "2026-07-15T11:43:36"
     },
     {
         "id": "22222222-2222-2222-2222-222222222222",
@@ -21,9 +21,9 @@
         "price": 400.0,
         "duration_minutes": 60,
         "image_filename": "AC Maintenance.jpg",
-        "is_active": true,
+        "is_active": false,
         "created_at": "2026-01-01T10:00:00",
-        "updated_at": "2026-01-01T10:00:00"
+        "updated_at": "2026-07-15T11:43:39"
     },
     {
         "id": "549b3cc3-61df-4b8e-9f8d-922379ac7b53",
@@ -34,9 +34,9 @@
         "price": 300.0,
         "duration_minutes": 60,
         "image_filename": "Plumbing Repair.jpg",
-        "is_active": true,
+        "is_active": false,
         "created_at": "2026-07-11T13:39:00",
-        "updated_at": "2026-07-11T13:39:00"
+        "updated_at": "2026-07-15T11:43:42"
     },
     {
         "id": "936d2bfd-b71e-4938-a57d-e402f166e678",
@@ -47,9 +47,9 @@
         "price": 350.0,
         "duration_minutes": 60,
         "image_filename": "Electrical Repair.jpg",
-        "is_active": true,
+        "is_active": false,
         "created_at": "2026-07-12T09:17:44",
-        "updated_at": "2026-07-12T09:17:44"
+        "updated_at": "2026-07-15T11:43:46"
     },
     {
         "id": "15cd53a7-fb46-437c-9c58-543d474c4d53",
@@ -73,8 +73,8 @@
         "price": 254.0,
         "duration_minutes": 33,
         "image_filename": "Plumbing Repair.jpg",
-        "is_active": true,
+        "is_active": false,
         "created_at": "2026-07-15T09:43:02",
-        "updated_at": "2026-07-15T09:43:02"
+        "updated_at": "2026-07-15T11:43:25"
     }
 ]

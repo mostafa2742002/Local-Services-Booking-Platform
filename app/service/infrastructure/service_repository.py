@@ -113,3 +113,15 @@ def save(service: LocalService) -> LocalService:
     save_services(services)
 
     return service
+
+
+def update(service: LocalService) -> LocalService:
+    services = load_services()
+
+    for i, existing_service in enumerate(services):
+        if existing_service.id == service.id:
+            services[i] = service
+            save_services(services)
+            return service
+
+    raise ValueError("Service not found")
