@@ -8,7 +8,8 @@ from app.service.infrastructure.service_repository import (
     find_by_id,
     find_by_provider_id,
     save,
-    update
+    update,
+    delete
 )
 
 
@@ -78,3 +79,12 @@ def toggle_service_active_status_service(service_id: UUID) -> None:
     service.is_active = not service.is_active
     service.updated_at = datetime.now().isoformat(timespec="seconds")
     update(service)
+
+
+def delete_service_by_id(service_id: UUID) -> None:
+    service = find_by_id(service_id)
+
+    if service is None:
+        raise ValueError("Service not found")
+
+    delete(service)

@@ -63,18 +63,5 @@
         "is_active": true,
         "created_at": "2026-07-13T17:08:31",
         "updated_at": "2026-07-13T17:08:31"
-    },
-    {
-        "id": "bb59b04b-0b67-44a2-9bf4-2b0cdf883844",
-        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
-        "name": "Plumbing Repair",
-        "description": "fix any plumbing repair",
-        "category": "Plumbing",
-        "price": 254.0,
-        "duration_minutes": 33,
-        "image_filename": "Plumbing Repair.jpg",
-        "is_active": false,
-        "created_at": "2026-07-15T09:43:02",
-        "updated_at": "2026-07-15T11:43:25"
     }
 ]

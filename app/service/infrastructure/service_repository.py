@@ -125,3 +125,15 @@ def update(service: LocalService) -> LocalService:
             return service
 
     raise ValueError("Service not found")
+
+
+def delete(service: LocalService) -> None:
+    services = load_services()
+
+    for i, existing_service in enumerate(services):
+        if existing_service.id == service.id:
+            del services[i]
+            save_services(services)
+            return
+
+    raise ValueError("Service not found")

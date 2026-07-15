@@ -8,7 +8,8 @@ from app.service.application.service_service import (
     get_service_details,
     get_provider_services,
     create_local_service,
-    get_all_categories
+    get_all_categories,
+    delete_service_by_id
 )
 from app.service.api.service_validator import validate_create_service_data
 
@@ -120,4 +121,17 @@ def submit_create_service_form():
     )
 
     flash("Service created successfully.", "success")
+    return redirect(url_for("services.show_provider_services"))
+
+@service_bp.get("/provider/delete/<service_id>")
+@login_required
+@role_required("PROVIDER")
+def delete_service(service_id):
+
+    try:
+        delete_service_by_id(UUID(service_id))
+        flash("Service deleted successfully.", "success")
+    except ValueError as e:
+        flash(str(e), "error")
+
     return redirect(url_for("services.show_provider_services"))
