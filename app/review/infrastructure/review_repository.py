@@ -47,8 +47,9 @@ def load_reviews() -> list[Review]:
         return []
 
     reviews_data = json.loads(content)
-
-    return [dict_to_review(review_data) for review_data in reviews_data]
+    reviews = [dict_to_review(review_data) for review_data in reviews_data]
+    reviews.reverse()
+    return reviews
 
 
 def save_reviews(reviews: list[Review]) -> None:
@@ -75,7 +76,7 @@ def find_by_booking_id(booking_id: UUID) -> Review | None:
 
 def find_by_customer_id(customer_id: UUID) -> list[Review]:
     reviews = load_reviews()
-
+    reviews.reverse()  
     return [
         review
         for review in reviews
@@ -85,6 +86,7 @@ def find_by_customer_id(customer_id: UUID) -> list[Review]:
 
 def find_by_provider_id(provider_id: UUID) -> list[Review]:
     reviews = load_reviews()
+    reviews.reverse()  
 
     return [
         review

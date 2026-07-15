@@ -51,8 +51,9 @@ def load_services() -> list[LocalService]:
         return []
 
     services_data = json.loads(content)
-
-    return [dict_to_service(service_data) for service_data in services_data]
+    services = [dict_to_service(service_data) for service_data in services_data]
+    services.reverse()
+    return services
 
 
 def save_services(services: list[LocalService]) -> None:
@@ -99,6 +100,7 @@ def find_by_id(service_id: UUID) -> LocalService | None:
 
 def find_by_provider_id(provider_id: UUID) -> list[LocalService]:
     services = load_services()
+    services.reverse()  
 
     return [
         service

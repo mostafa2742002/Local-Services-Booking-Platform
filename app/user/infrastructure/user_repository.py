@@ -41,8 +41,9 @@ def load_users() -> list[User]:
         return []
     
     user_data = json.loads(content)
-    
-    return [dict_to_user(data) for data in user_data]
+    users = [dict_to_user(data) for data in user_data]
+    users.reverse()
+    return users
 
 
 def save_users(users: list[User]) -> None:

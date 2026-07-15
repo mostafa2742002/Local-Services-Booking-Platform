@@ -52,8 +52,9 @@ def load_bookings() -> list[Booking]:
         return []
 
     bookings_data = json.loads(content)
-
-    return [dict_to_booking(booking_data) for booking_data in bookings_data]
+    bookings = [dict_to_booking(booking_data) for booking_data in bookings_data]
+    bookings.reverse()
+    return bookings
 
 
 def save_bookings(bookings: list[Booking]) -> None:
