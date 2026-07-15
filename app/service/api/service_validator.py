@@ -3,7 +3,8 @@ def validate_create_service_data(
     description: str,
     category: str,
     price: str,
-    duration_minutes: str
+    duration_minutes: str,
+    image: any
 ) -> list[str]:
     errors = []
 
@@ -26,6 +27,9 @@ def validate_create_service_data(
     elif not is_positive_integer(duration_minutes):
         errors.append("Service duration must be a positive number")
 
+    if not image:
+        errors.append("Service image is required")
+        
     return errors
 
 

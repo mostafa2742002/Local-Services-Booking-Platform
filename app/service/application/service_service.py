@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 from uuid import UUID, uuid4
 
 from app.service.domain.local_service import LocalService
@@ -10,8 +11,8 @@ from app.service.infrastructure.service_repository import (
 )
 
 
-def get_available_services() -> list[LocalService]:
-    return find_active_services()
+def get_available_services(query: str = "", category: str = "") -> list[LocalService]:
+    return find_active_services(query=query, category=category)
 
 
 def get_service_details(service_id: UUID) -> LocalService:
@@ -36,9 +37,12 @@ def create_local_service(
     description: str,
     category: str,
     price: float,
-    duration_minutes: int
+    duration_minutes: int,
+    image: any
 ) -> LocalService:
     now = datetime.now().isoformat(timespec="seconds")
+
+    image.save(os.path.join("app/static/images/services", image.filename))
 
     service = LocalService(
         id=uuid4(),
@@ -48,9 +52,16 @@ def create_local_service(
         category=category,
         price=price,
         duration_minutes=duration_minutes,
+        image_filename=image.filename,
         is_active=True,
         created_at=now,
         updated_at=now
     )
 
     return save(service)
+
+
+def get_all_categories() -> list[str]:
+    services = find_active_services()
+    categories = [service.category for service in services]
+    return sorted(categories)

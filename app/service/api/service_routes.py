@@ -7,7 +7,8 @@ from app.service.application.service_service import (
     get_available_services,
     get_service_details,
     get_provider_services,
-    create_local_service
+    create_local_service,
+    get_all_categories
 )
 from app.service.api.service_validator import validate_create_service_data
 
@@ -18,12 +19,25 @@ service_bp = Blueprint("services", __name__, url_prefix="/services")
 @service_bp.get("/")
 def list_services():
     services = get_available_services()
-
+    categories = get_all_categories()  
     return render_template(
         "services/list.html",
-        services=services
+        services=services,
+        categories=categories
     )
 
+
+@service_bp.post("/")
+def list_services_with_filters():
+    query = request.form.get("search", "")
+    filter_category = request.form.get("category", "")
+    services = get_available_services(query=query, category=filter_category)
+    categories = get_all_categories()  
+    return render_template(
+        "services/list.html",
+        services=services,
+        categories=categories
+    )
 
 @service_bp.get("/<service_id>")
 def show_service_details(service_id):
@@ -69,13 +83,15 @@ def submit_create_service_form():
     category = request.form.get("category")
     price = request.form.get("price")
     duration_minutes = request.form.get("duration_minutes")
+    image = request.files.get("image")
 
     errors = validate_create_service_data(
         name=name,
         description=description,
         category=category,
         price=price,
-        duration_minutes=duration_minutes
+        duration_minutes=duration_minutes,
+        image=image
     )
 
     if errors:
@@ -99,7 +115,8 @@ def submit_create_service_form():
         description=description.strip(),
         category=category.strip(),
         price=float(price),
-        duration_minutes=int(duration_minutes)
+        duration_minutes=int(duration_minutes),
+        image=image
     )
 
     flash("Service created successfully.", "success")

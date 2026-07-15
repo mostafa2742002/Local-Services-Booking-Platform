@@ -11,6 +11,7 @@ class LocalService:
     category: str
     price: float
     duration_minutes: int
+    image_filename: str
     is_active: bool
     created_at: str
     updated_at: str

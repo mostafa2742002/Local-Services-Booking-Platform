@@ -7,8 +7,8 @@
 {% block content %}
 
 <section class="home-hero">
-    <div class="home-hero-content">
-        <h1>Book trusted local services easily</h1>
+    <div class="home-hero-content-left">
+        <h1>Book trusted local services <br><span style="color: #2563eb;">anytime, anywhere</span></h1>
         <p>
             Find service providers, send booking requests, and track your bookings from one place.
         </p>
@@ -25,23 +25,62 @@
             {% endif %}
         </div>
     </div>
+
+    <div class="home-hero-content-right">
+        <img src="{{ url_for('static', filename='images/home/hero_section-removebg.png') }}" alt="Home Hero Image">
+    </div>
 </section>
 
 <section class="home-summary">
     <div class="summary-card">
-        <h2>Customers</h2>
-        <p>Browse services and create booking requests.</p>
+        <i class="fa-solid fa-user fa-2xl icons"></i>
+        <div>
+            <h2>Customers</h2>
+            <p>Browse services and create booking requests.</p>
+        </div>
+        
     </div>
 
     <div class="summary-card">
-        <h2>Providers</h2>
-        <p>Accept, reject, start, and complete bookings.</p>
+        <i class="fa-solid fa-briefcase fa-2xl icons"></i>
+        <div>
+            <h2>Providers</h2>
+            <p>Accept, reject, start, and complete bookings.</p>
+        </div>
+        
     </div>
 
     <div class="summary-card">
-        <h2>Admins</h2>
-        <p>View users, services, bookings, and reviews.</p>
+        <i class="fa-solid fa-shield-halved fa-2xl icons"></i>
+        <div>
+            <h2>Admins</h2>
+            <p>View users, services, bookings, and reviews.</p>
+        </div>
     </div>
+</section>
+
+
+<section class="users-services-reviews-numbers" >
+    <div class="numbers-card">
+        <h2>{{ summary.users_count }}</h2>
+        <p>Total Users</p>
+    </div>
+
+    <div class="numbers-card">
+        <h2>{{ summary.services_count }}</h2>
+        <p>Total Services</p>
+    </div>
+
+    <div class="numbers-card">
+        <h2>{{ summary.reviews_count }}</h2>
+        <p>Total Reviews</p>
+    </div>
+
+    <div class="numbers-card">
+        <h2>{{ summary.bookings_count }}</h2>
+        <p>Total Bookings</p>
+    </div>
+    
 </section>
 
 {% endblock %}

@@ -17,6 +17,7 @@ def service_to_dict(service: LocalService) -> dict:
         "category": service.category,
         "price": service.price,
         "duration_minutes": service.duration_minutes,
+        "image_filename": service.image_filename,
         "is_active": service.is_active,
         "created_at": service.created_at,
         "updated_at": service.updated_at
@@ -32,6 +33,7 @@ def dict_to_service(data: dict) -> LocalService:
         category=data["category"],
         price=float(data["price"]),
         duration_minutes=int(data["duration_minutes"]),
+        image_filename=data["image_filename"],
         is_active=bool(data["is_active"]),
         created_at=data["created_at"],
         updated_at=data["updated_at"]
@@ -65,14 +67,24 @@ def find_all() -> list[LocalService]:
     return load_services()
 
 
-def find_active_services() -> list[LocalService]:
+def find_active_services(query: str = "", category: str = "") -> list[LocalService]:
     services = load_services()
 
-    return [
-        service
-        for service in services
-        if service.is_active
-    ]
+    filtered_services = []
+
+    for service in services:
+        if not service.is_active:
+            continue
+
+        if query and query.lower() not in service.name.lower():
+            continue
+
+        if category and category.lower() != service.category.lower():
+            continue
+
+        filtered_services.append(service)
+
+    return filtered_services
 
 
 def find_by_id(service_id: UUID) -> LocalService | None:

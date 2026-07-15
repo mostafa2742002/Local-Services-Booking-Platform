@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/service/service_list.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -11,10 +11,40 @@
     <p>Browse local services and choose the one you need.</p>
 </section>
 
+<section class="search-bar">
+    <form action="{{ url_for('services.list_services_with_filters') }}" method="post">
+        <input
+            type="text"
+            name="search"
+            id="search-input"
+            value="{{ search_query or '' }}"
+            placeholder="Search services..."
+        >
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+<section class="filter-bar">
+    <form action="{{ url_for('services.list_services_with_filters') }}" method="post">
+        <label for="category">Filter by Category:</label>
+        <select name="category" id="category">
+            <option value="">All Categories</option>
+            {% for category in categories %}
+                <option value="{{ category }}" {% if selected_category == category %}selected{% endif %}>
+                    {{ category }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Apply Filter</button>
+    </form>
+</section>
+
 <section class="services-list">
     {% if services %}
         {% for service in services %}
             <article class="service-card">
+                <img src="{{ url_for('static', filename='images/services/' + service.image_filename) }}" alt="{{ service.name }} Image">
                 <div>
                     <h2>{{ service.name }}</h2>
                     <p>{{ service.description }}</p>

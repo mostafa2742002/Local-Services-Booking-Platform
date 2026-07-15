@@ -1,12 +1,23 @@
 .home-hero {
-    background: #ffffff;
+    background: linear-gradient(90deg, #ffffff 5%, #2563eb 100%);
     border: 1px solid #e5e7eb;
     padding: 32px;
     border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.home-hero-content {
+.home-hero-content-left {
     max-width: 720px;
+}
+    
+.home-hero-content-right {
+    max-width: 500px;
+}
+
+.home-hero-content-right img {
+    width: 100%;
+    height: auto;
 }
 
 .home-hero h1 {
@@ -57,16 +68,71 @@
     border: 1px solid #e5e7eb;
     padding: 20px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .summary-card h2 {
     margin: 0 0 8px;
     font-size: 20px;
     color: #111827;
+    text-align: center;
 }
 
 .summary-card p {
     margin: 0;
     color: #4b5563;
     line-height: 1.5;
+    text-align: center;
+}
+
+.icons{
+    margin: 5px auto;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    border: 1px solid #94989f;
+    padding: 12px;
+    color: #2563eb;
+}
+
+.users-services-reviews-numbers{
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.users-services-reviews-numbers .numbers-card{
+    background: #2563EC;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 19px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 150px;
+    justify-content: center;
+}
+
+.users-services-reviews-numbers .numbers-card h2{
+    margin: 0 0 8px;
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 600;
+    
+}
+
+.users-services-reviews-numbers .numbers-card p{
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.5;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;   
+    font-size: 18px;
 }

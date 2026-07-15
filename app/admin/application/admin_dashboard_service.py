@@ -20,3 +20,16 @@ def get_admin_dashboard_data() -> dict:
         "bookings": bookings,
         "reviews": reviews
     }
+
+def get_admin_dashboard_summary() -> dict:
+    users = find_all_users()
+    services = find_all_services()
+    bookings = find_all_bookings()
+    reviews = find_all_reviews()
+
+    return {
+        "users_count": len(users),
+        "services_count": len(services),
+        "bookings_count": len(bookings),
+        "reviews_count": len(reviews)
+    }

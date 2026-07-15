@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bookings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/booking/customer_bookings.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -15,51 +15,104 @@
     {% if bookings %}
         {% for booking in bookings %}
             <div class="booking-card">
-                <div class="booking-card-header">
-                    <h2>{{ booking.booking_date }} at {{ booking.booking_time }}</h2>
-                    <span class="booking-status">
+
+                <div class="booking-card-top">
+                    <div class="booking-date-section">
+                        <div class="booking-icon">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
+
+                        <div>
+                            <span class="booking-label">Booking Date</span>
+
+                            <h2>
+                                {{ booking.booking_date }}
+                            </h2>
+
+                            <p>
+                                <i class="fa-regular fa-clock"></i>
+                                {{ booking.booking_time }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <span class="booking-status status-{{ booking.status.value|lower }}">
                         {{ booking.get_status_label() }}
                     </span>
                 </div>
 
-                <div class="booking-info">
-                    <p>
-                        <strong>Address:</strong>
-                        {{ booking.address }}
-                    </p>
 
-                    <p>
-                        <strong>Problem:</strong>
-                        {{ booking.problem_description or "No description provided." }}
-                    </p>
+                <div class="booking-details">
 
-                    <p>
-                        <strong>Created At:</strong>
-                        {{ booking.created_at }}
-                    </p>
+                    <div class="booking-detail">
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+                            <span class="booking-label">Address</span>
+                            <p>{{ booking.address }}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="booking-detail">
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+
+                        <div>
+                            <span class="booking-label">Problem Description</span>
+                            <p>
+                                {{ booking.problem_description or "No description provided." }}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="booking-detail">
+                        <div class="detail-icon">
+                            <i class="fa-regular fa-calendar-plus"></i>
+                        </div>
+
+                        <div>
+                            <span class="booking-label">Created At</span>
+                            <p>{{ booking.created_at }}</p>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="booking-actions">
-                    {% if booking.can_customer_cancel() %}
-                        <form
-                            action="{{ url_for('bookings.cancel_customer_booking', booking_id=booking.id) }}"
-                            method="post"
-                        >
-                            <button type="submit" class="danger-btn">
-                                Cancel
-                            </button>
-                        </form>
-                    {% endif %}
 
-                    {% if booking.can_customer_review() %}
-                        <a
-                            href="{{ url_for('reviews.show_create_review_page', booking_id=booking.id) }}"
-                            class="primary-btn"
-                        >
-                            Add Review
-                        </a>
-                    {% endif %}
-                </div>
+                {% if booking.can_customer_cancel() or booking.can_customer_review() %}
+                    <div class="booking-actions">
+
+                        {% if booking.can_customer_cancel() %}
+                            <form
+                                action="{{ url_for('bookings.cancel_customer_booking', booking_id=booking.id) }}"
+                                method="post"
+                            >
+                                <button type="submit" class="danger-btn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                    Cancel Booking
+                                </button>
+                            </form>
+                        {% endif %}
+
+
+                        {% if booking.can_customer_review() %}
+                            <a
+                                href="{{ url_for('reviews.show_create_review_page', booking_id=booking.id) }}"
+                                class="primary-btn"
+                            >
+                                <i class="fa-regular fa-star"></i>
+                                Add Review
+                            </a>
+                        {% endif %}
+
+                    </div>
+                {% endif %}
+
             </div>
         {% endfor %}
     {% else %}
