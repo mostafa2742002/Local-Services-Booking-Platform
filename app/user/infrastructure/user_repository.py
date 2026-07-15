@@ -82,3 +82,9 @@ def save(user: User) -> User:
     save_users(users)
 
     return user
+
+
+def delete_by_id(user_id: str) -> None:
+    users = load_users()
+    users = [user for user in users if str(user.id) != user_id]
+    save_users(users)
