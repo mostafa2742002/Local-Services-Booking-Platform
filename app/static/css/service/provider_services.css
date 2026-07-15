@@ -1,0 +1,139 @@
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: #111827;
+}
+
+.page-header p {
+    margin: 0;
+    color: #4b5563;
+    font-size: 16px;
+}
+
+.primary-btn {
+    display: inline-block;
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+}
+
+.services-list {
+    display: grid;
+    gap: 18px;
+}
+
+.service-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: center;
+    gap: 20px;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.service-card img {
+    width: 180px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #f3f4f6;
+}
+
+.service-card h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: #111827;
+}
+
+.service-card p {
+    margin: 0 0 14px;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.service-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.service-meta span {
+    background: #f3f4f6;
+    color: #374151;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.service-meta span:last-child {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.empty-state {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+}
+
+.empty-state h2 {
+    margin: 0 0 8px;
+    color: #111827;
+}
+
+.empty-state p {
+    margin: 0;
+    color: #4b5563;
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+    }
+
+    .primary-btn {
+        width: 100%;
+    }
+
+    .service-card {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+
+    .service-card img {
+        width: 100%;
+        height: 190px;
+    }
+}
