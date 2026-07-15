@@ -7,7 +7,8 @@ def test_create_service_validation_requires_main_fields():
         description="",
         category="",
         price="",
-        duration_minutes=""
+        duration_minutes="",
+        image=object()
     )
 
     assert "Service name is required" in errors
@@ -23,7 +24,8 @@ def test_create_service_validation_rejects_invalid_price():
         description="General home cleaning service",
         category="Cleaning",
         price="wrong-price",
-        duration_minutes="60"
+        duration_minutes="60",  
+        image=object()
     )
 
     assert "Service price must be a positive number" in errors
@@ -35,7 +37,8 @@ def test_create_service_validation_rejects_invalid_duration():
         description="General home cleaning service",
         category="Cleaning",
         price="250",
-        duration_minutes="wrong-duration"
+        duration_minutes="wrong-duration",
+        image=object()
     )
 
     assert "Service duration must be a positive number" in errors
@@ -47,7 +50,8 @@ def test_create_service_validation_accepts_valid_data():
         description="General home cleaning service",
         category="Cleaning",
         price="250",
-        duration_minutes="60"
+        duration_minutes="60",
+        image=object()
     )
 
     assert errors == []

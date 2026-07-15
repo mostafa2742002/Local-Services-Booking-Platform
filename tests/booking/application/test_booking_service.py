@@ -16,6 +16,7 @@ def make_service(provider_id=None):
         category="Electrical",
         price=350.0,
         duration_minutes=60,
+        image_filename="electrical_repair.jpg",
         is_active=True,
         created_at="2026-01-01T10:00:00",
         updated_at="2026-01-01T10:00:00"
