@@ -22,6 +22,7 @@ def make_booking(
         address="Cairo",
         problem_description="Light switch is not working.",
         status=status,
+        phone_number="01012345678",
         created_at="2026-01-01T10:00:00",
         updated_at="2026-01-01T10:00:00"
     )
@@ -36,7 +37,7 @@ def test_create_review_creates_review_for_completed_booking(monkeypatch):
         customer_id=customer_id,
         provider_id=provider_id,
         service_id=service_id,
-        status=BookingStatus.COMPLETED
+        status=BookingStatus.COMPLETED,
     )
 
     saved_reviews = []
