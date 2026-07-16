@@ -20,11 +20,9 @@ service_bp = Blueprint("services", __name__, url_prefix="/services")
 @service_bp.get("/")
 def list_services():
     services = get_available_services()
-    categories = get_all_categories()  
     return render_template(
         "services/list.html",
         services=services,
-        categories=categories
     )
 
 
@@ -33,11 +31,11 @@ def list_services_with_filters():
     query = request.form.get("search", "")
     filter_category = request.form.get("category", "")
     services = get_available_services(query=query, category=filter_category)
-    categories = get_all_categories()  
     return render_template(
         "services/list.html",
         services=services,
-        categories=categories
+        selected_category=filter_category,
+        search_query=query
     )
 
 @service_bp.get("/<service_id>")

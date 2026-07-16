@@ -2,6 +2,7 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/service/service_list.css') }}">
+    <script src="{{ url_for('static', filename='js/services.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -27,8 +28,12 @@
 <section class="filter-bar">
     <form action="{{ url_for('services.list_services_with_filters') }}" method="post">
         <label for="category">Filter by Category:</label>
-        <select name="category" id="category">
-            <option value="">All Categories</option>
+        <select
+            name="category"
+            id="category"
+            data-selected-category="{{ selected_category or '' }}"
+        >
+            <option value=""  {% if selected_category == '' %}selected{% endif %} >All Categories</option>
             {% for category in categories %}
                 <option value="{{ category }}" {% if selected_category == category %}selected{% endif %}>
                     {{ category }}

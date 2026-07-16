@@ -27,9 +27,14 @@ const categories = [
 
 const selectElement = document.getElementById('category');
 
-categories.forEach(item => {
-    const option = document.createElement('option');
-    option.value = item;
-    option.textContent = item;
-    selectElement.appendChild(option);
-});
+if (selectElement) {
+    categories.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item;
+        option.textContent = item;
+        selectElement.appendChild(option);
+    });
+
+    const selectedCategory = selectElement.dataset.selectedCategory || '';
+    selectElement.value = selectedCategory;
+}
