@@ -77,6 +77,17 @@
                 >{{ problem_description or '' }}</textarea>
             </div>
 
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input
+                    type="text"
+                    id="phone_number"
+                    name="phone_number"
+                    value="{{ phone_number or '' }}"
+                    placeholder="Enter your phone number"
+                >
+            </div>
+
             <button type="submit" class="primary-btn">
                 Submit Booking Request
             </button>

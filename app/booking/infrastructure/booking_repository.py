@@ -20,6 +20,7 @@ def booking_to_dict(booking: Booking) -> dict:
         "address": booking.address,
         "problem_description": booking.problem_description,
         "status": booking.status.value,
+        "phone_number": booking.phone_number,
         "created_at": booking.created_at,
         "updated_at": booking.updated_at
     }
@@ -36,6 +37,7 @@ def dict_to_booking(data: dict) -> Booking:
         address=data["address"],
         problem_description=data["problem_description"],
         status=BookingStatus(data["status"]),
+        phone_number=data["phone_number"],
         created_at=data["created_at"],
         updated_at=data["updated_at"]
     )
@@ -52,8 +54,9 @@ def load_bookings() -> list[Booking]:
         return []
 
     bookings_data = json.loads(content)
-
-    return [dict_to_booking(booking_data) for booking_data in bookings_data]
+    bookings = [dict_to_booking(booking_data) for booking_data in bookings_data]
+    bookings.reverse()
+    return bookings
 
 
 def save_bookings(bookings: list[Booking]) -> None:

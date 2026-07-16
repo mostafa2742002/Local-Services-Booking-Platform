@@ -51,8 +51,9 @@ def load_services() -> list[LocalService]:
         return []
 
     services_data = json.loads(content)
-
-    return [dict_to_service(service_data) for service_data in services_data]
+    services = [dict_to_service(service_data) for service_data in services_data]
+    services.reverse()
+    return services
 
 
 def save_services(services: list[LocalService]) -> None:
@@ -99,6 +100,7 @@ def find_by_id(service_id: UUID) -> LocalService | None:
 
 def find_by_provider_id(provider_id: UUID) -> list[LocalService]:
     services = load_services()
+    services.reverse()  
 
     return [
         service
@@ -113,3 +115,27 @@ def save(service: LocalService) -> LocalService:
     save_services(services)
 
     return service
+
+
+def update(service: LocalService) -> LocalService:
+    services = load_services()
+
+    for i, existing_service in enumerate(services):
+        if existing_service.id == service.id:
+            services[i] = service
+            save_services(services)
+            return service
+
+    raise ValueError("Service not found")
+
+
+def delete(service: LocalService) -> None:
+    services = load_services()
+
+    for i, existing_service in enumerate(services):
+        if existing_service.id == service.id:
+            del services[i]
+            save_services(services)
+            return
+
+    raise ValueError("Service not found")

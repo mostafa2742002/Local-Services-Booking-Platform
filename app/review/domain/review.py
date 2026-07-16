@@ -9,6 +9,7 @@ class Review:
     customer_id: UUID
     provider_id: UUID
     service_id: UUID
+    service_name: str
     rating: int
     comment: str
     created_at: str

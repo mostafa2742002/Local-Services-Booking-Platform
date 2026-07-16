@@ -54,10 +54,12 @@ def show_create_review_page(booking_id):
         return redirect(url_for("bookings.show_customer_bookings"))
 
 
-@review_bp.post("/create/<booking_id>")
+@review_bp.post("/create/<booking_id>/<service_name>")
 @login_required
 @role_required("CUSTOMER")
-def submit_create_review_form(booking_id):
+def submit_create_review_form(booking_id, service_name):
+    print("Booking ID:", booking_id)
+    print("Service Name:", service_name)
     parsed_booking_id = parse_uuid(booking_id)
 
     if parsed_booking_id is None:
@@ -96,7 +98,7 @@ def submit_create_review_form(booking_id):
         return render_template(
             "reviews/create.html",
             booking=booking,
-            service_name=get_service_name(booking.service_id),
+            service_name=service_name,
             rating=rating,
             comment=comment
         )
@@ -106,7 +108,8 @@ def submit_create_review_form(booking_id):
             customer_id=UUID(session["user_id"]),
             booking_id=parsed_booking_id,
             rating=int(rating),
-            comment=comment.strip() if comment else ""
+            comment=comment.strip() if comment else "",
+            serviceName=service_name
         )
 
         flash("Review created successfully.", "success")
@@ -126,7 +129,7 @@ def show_customer_reviews():
 
     return render_template(
         "reviews/customer_reviews.html",
-        review_views=build_review_view_models(reviews)
+        review_views=reviews
     )
 
 

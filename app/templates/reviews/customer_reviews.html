@@ -18,24 +18,12 @@
                 <div class="review-main">
                     <div>
                         <h2>{{ review_view.service_name }}</h2>
-                        <p>{{ review_view.review.comment or "No comment provided." }}</p>
+                        <p>{{ review_view.comment or "No comment provided." }}</p>
                     </div>
 
                     <span class="rating-badge">
-                        {{ review_view.review.rating }}/5
+                        {{ review_view.rating }}/5
                     </span>
-                </div>
-
-                <div class="review-details">
-                    <div>
-                        <strong>Booking ID</strong>
-                        <span>{{ review_view.review.booking_id }}</span>
-                    </div>
-
-                    <div>
-                        <strong>Created At</strong>
-                        <span>{{ review_view.review.created_at }}</span>
-                    </div>
                 </div>
             </article>
         {% endfor %}

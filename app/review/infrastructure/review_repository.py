@@ -15,6 +15,7 @@ def review_to_dict(review: Review) -> dict:
         "customer_id": str(review.customer_id),
         "provider_id": str(review.provider_id),
         "service_id": str(review.service_id),
+        "serviceName": review.service_name,
         "rating": review.rating,
         "comment": review.comment,
         "created_at": review.created_at,
@@ -29,6 +30,7 @@ def dict_to_review(data: dict) -> Review:
         customer_id=UUID(data["customer_id"]),
         provider_id=UUID(data["provider_id"]),
         service_id=UUID(data["service_id"]),
+        service_name=data["serviceName"],
         rating=int(data["rating"]),
         comment=data["comment"],
         created_at=data["created_at"],
@@ -47,8 +49,9 @@ def load_reviews() -> list[Review]:
         return []
 
     reviews_data = json.loads(content)
-
-    return [dict_to_review(review_data) for review_data in reviews_data]
+    reviews = [dict_to_review(review_data) for review_data in reviews_data]
+    reviews.reverse()
+    return reviews
 
 
 def save_reviews(reviews: list[Review]) -> None:
@@ -75,7 +78,7 @@ def find_by_booking_id(booking_id: UUID) -> Review | None:
 
 def find_by_customer_id(customer_id: UUID) -> list[Review]:
     reviews = load_reviews()
-
+    reviews.reverse()  
     return [
         review
         for review in reviews
@@ -85,6 +88,7 @@ def find_by_customer_id(customer_id: UUID) -> list[Review]:
 
 def find_by_provider_id(provider_id: UUID) -> list[Review]:
     reviews = load_reviews()
+    reviews.reverse()  
 
     return [
         review

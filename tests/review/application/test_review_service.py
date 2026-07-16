@@ -22,6 +22,7 @@ def make_booking(
         address="Cairo",
         problem_description="Light switch is not working.",
         status=status,
+        phone_number="01012345678",
         created_at="2026-01-01T10:00:00",
         updated_at="2026-01-01T10:00:00"
     )
@@ -36,7 +37,7 @@ def test_create_review_creates_review_for_completed_booking(monkeypatch):
         customer_id=customer_id,
         provider_id=provider_id,
         service_id=service_id,
-        status=BookingStatus.COMPLETED
+        status=BookingStatus.COMPLETED,
     )
 
     saved_reviews = []
@@ -59,7 +60,8 @@ def test_create_review_creates_review_for_completed_booking(monkeypatch):
         customer_id=customer_id,
         booking_id=booking.id,
         rating=5,
-        comment="Great service"
+        comment="Great service",
+        serviceName="Home Cleaning"
     )
 
     assert review.booking_id == booking.id
@@ -68,7 +70,9 @@ def test_create_review_creates_review_for_completed_booking(monkeypatch):
     assert review.service_id == service_id
     assert review.rating == 5
     assert review.comment == "Great service"
+    assert review.service_name == "Home Cleaning"
     assert len(saved_reviews) == 1
+    
 
 
 def test_create_review_rejects_booking_not_owned_by_customer(monkeypatch):
@@ -90,7 +94,8 @@ def test_create_review_rejects_booking_not_owned_by_customer(monkeypatch):
             customer_id=customer_id,
             booking_id=booking.id,
             rating=5,
-            comment="Great service"
+            comment="Great service",
+            serviceName="Home Cleaning"
         )
 
 
@@ -112,7 +117,8 @@ def test_create_review_rejects_non_completed_booking(monkeypatch):
             customer_id=customer_id,
             booking_id=booking.id,
             rating=5,
-            comment="Great service"
+            comment="Great service",
+            serviceName="Home Cleaning"
         )
 
 
@@ -140,5 +146,6 @@ def test_create_review_rejects_duplicate_review(monkeypatch):
             customer_id=customer_id,
             booking_id=booking.id,
             rating=5,
-            comment="Great service"
+            comment="Great service",    
+            serviceName="Home Cleaning"
         )

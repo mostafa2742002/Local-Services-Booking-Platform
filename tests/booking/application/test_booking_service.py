@@ -38,6 +38,7 @@ def make_booking(
         address="Cairo",
         problem_description="Light switch is not working.",
         status=status,
+        phone_number="01012345678",
         created_at="2026-01-01T10:00:00",
         updated_at="2026-01-01T10:00:00"
     )
@@ -77,13 +78,15 @@ def test_create_booking_creates_pending_booking_with_provider_from_service(monke
         booking_date="2026-01-01",
         booking_time="10:30",
         address="Cairo",
-        problem_description="Light switch is not working."
+        problem_description="Light switch is not working.",
+        phone_number="01012345678"
     )
 
     assert booking.customer_id == customer_id
     assert booking.provider_id == provider_id
     assert booking.service_id == service_id
     assert booking.status == BookingStatus.PENDING
+    assert booking.phone_number == "01012345678"
     assert len(saved_bookings) == 1
 
 

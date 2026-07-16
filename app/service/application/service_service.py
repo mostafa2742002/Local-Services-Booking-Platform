@@ -7,7 +7,9 @@ from app.service.infrastructure.service_repository import (
     find_active_services,
     find_by_id,
     find_by_provider_id,
-    save
+    save,
+    update,
+    delete
 )
 
 
@@ -65,3 +67,33 @@ def get_all_categories() -> list[str]:
     services = find_active_services()
     categories = [service.category for service in services]
     return sorted(categories)
+
+
+def toggle_service_active_status_service(service_id: UUID) -> None:
+    print(f"Toggling active status for service with ID: {service_id}")
+    service = find_by_id(service_id)
+
+    if service is None:
+        raise ValueError("Service not found")
+
+    service.is_active = not service.is_active
+    service.updated_at = datetime.now().isoformat(timespec="seconds")
+    update(service)
+
+
+def delete_service_by_id(service_id: UUID) -> None:
+    service = find_by_id(service_id)
+
+    if service is None:
+        raise ValueError("Service not found")
+
+    delete(service)
+
+
+def get_service_name(service_id: UUID) -> str:
+    service = find_by_id(service_id)
+
+    if service is None:
+        raise ValueError("Service not found")
+
+    return service.name
