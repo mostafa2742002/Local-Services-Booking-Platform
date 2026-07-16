@@ -19,7 +19,8 @@ def create_booking(
     booking_date: str,
     booking_time: str,
     address: str,
-    problem_description: str
+    problem_description: str,
+    phone_number: str
 ) -> Booking:
     local_service = get_service_details(service_id)
 
@@ -35,6 +36,7 @@ def create_booking(
         address=address,
         problem_description=problem_description or "",
         status=BookingStatus.PENDING,
+        phone_number=phone_number,
         created_at=now,
         updated_at=now
     )

@@ -15,6 +15,7 @@ class Booking:
         address: str,
         problem_description: str,
         status: BookingStatus,
+        phone_number: str,
         created_at: str,
         updated_at: str
     ):
@@ -27,6 +28,7 @@ class Booking:
         self.address = address
         self.problem_description = problem_description
         self.status = status
+        self.phone_number = phone_number
         self.created_at = created_at
         self.updated_at = updated_at
 

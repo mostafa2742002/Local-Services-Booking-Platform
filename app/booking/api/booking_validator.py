@@ -4,7 +4,8 @@ from datetime import datetime
 def validate_create_booking_data(
     booking_date: str,
     booking_time: str,
-    address: str
+    address: str,
+    phone_number: str
 ) -> list[str]:
     errors = []
 
@@ -20,6 +21,10 @@ def validate_create_booking_data(
 
     if not address or address.strip() == "":
         errors.append("Address is required")
+
+    if not phone_number or phone_number.strip() == "":
+        errors.append("Phone number is required")
+    
 
     return errors
 

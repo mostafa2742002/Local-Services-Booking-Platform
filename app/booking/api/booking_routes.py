@@ -57,11 +57,13 @@ def submit_create_booking_form(service_id):
     booking_time = request.form.get("booking_time")
     address = request.form.get("address")
     problem_description = request.form.get("problem_description")
+    phone_number = request.form.get("phone_number")
 
     errors = validate_create_booking_data(
         booking_date=booking_date,
         booking_time=booking_time,
-        address=address
+        address=address,
+        phone_number=phone_number,
     )
 
     try:
@@ -81,7 +83,8 @@ def submit_create_booking_form(service_id):
             booking_date=booking_date,
             booking_time=booking_time,
             address=address,
-            problem_description=problem_description
+            problem_description=problem_description,
+            phone_number=phone_number
         )
 
     customer_id = UUID(session["user_id"])
@@ -92,7 +95,9 @@ def submit_create_booking_form(service_id):
         booking_date=booking_date.strip(),
         booking_time=booking_time.strip(),
         address=address.strip(),
-        problem_description=problem_description
+        problem_description=problem_description,
+        phone_number=phone_number.strip()
+
     )
 
     flash("Booking request created successfully.", "success")
