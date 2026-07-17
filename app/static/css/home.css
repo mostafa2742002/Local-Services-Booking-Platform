@@ -1,138 +1,203 @@
 .home-hero {
-    background: linear-gradient(90deg, #ffffff 5%, #2563eb 100%);
-    border: 1px solid #e5e7eb;
-    padding: 32px;
-    border-radius: 8px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    padding: 32px;
+    border: 1px solid #354055;
+    border-radius: 10px;
+    background: linear-gradient(
+        110deg,
+        #171b31 0%,
+        #1c234a 55%,
+        #2a3986 100%
+    );
+    overflow: hidden;
 }
 
 .home-hero-content-left {
-    max-width: 720px;
+    flex: 1;
+    max-width: 620px;
 }
-    
+
 .home-hero-content-right {
+    width: 43%;
     max-width: 500px;
 }
 
 .home-hero-content-right img {
+    display: block;
     width: 100%;
     height: auto;
 }
 
 .home-hero h1 {
-    margin: 0 0 12px;
+    margin: 0 0 14px;
+    color: #f8fafc;
     font-size: 32px;
     line-height: 1.2;
-    color: #111827;
+}
+
+.home-hero h1 span {
+    color: #6f9eff;
 }
 
 .home-hero p {
+    max-width: 580px;
     margin: 0;
+    color: #cbd5e1;
     font-size: 16px;
     line-height: 1.6;
-    color: #4b5563;
 }
 
 .home-actions {
-    margin-top: 24px;
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
 }
 
 .secondary-btn {
-    border: 1px solid #d1d5db;
-    color: #374151;
-    background: #ffffff;
     padding: 12px 16px;
-    border-radius: 6px;
+    border: 1px solid #4a5770;
+    border-radius: 8px;
+    background: #212836;
+    color: #f8fafc;
     font-size: 15px;
     font-weight: 600;
 }
 
 .secondary-btn:hover {
-    background: #f9fafb;
+    border-color: #6f9eff;
+    background: #293244;
+    color: #6f9eff;
 }
 
-.home-summary {
-    margin-top: 24px;
+/* Summary Cards */
 
+.home-summary {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+    margin-top: 24px;
 }
 
 .summary-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
+    padding: 22px;
+    border: 1px solid #354055;
+    border-radius: 10px;
+    background: #212836;
+    text-align: center;
 }
 
 .summary-card h2 {
     margin: 0 0 8px;
+    color: #f8fafc;
     font-size: 20px;
-    color: #111827;
-    text-align: center;
 }
 
 .summary-card p {
     margin: 0;
-    color: #4b5563;
+    color: #cbd5e1;
     line-height: 1.5;
-    text-align: center;
 }
 
-.icons{
-    margin: 5px auto;
-    margin-bottom: 12px;
-    border-radius: 50%;
-    border: 1px solid #94989f;
-    padding: 12px;
-    color: #2563eb;
-}
-
-.users-services-reviews-numbers{
-    margin-top: 24px;
+.icons {
     display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-.users-services-reviews-numbers .numbers-card{
-    background: #2563EC;
-    border: 1px solid #e5e7eb;
-    padding: 20px;
-    border-radius: 19px;
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    height: 150px;
+    align-items: center;
     justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin: 4px auto 18px;
+    padding: 0;
+    border-radius: 50%;
+    color: #6f9eff;
 }
 
-.users-services-reviews-numbers .numbers-card h2{
+/* Statistics */
+
+.users-services-reviews-numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 24px;
+    padding: 20px;
+    border: 1px solid #354055;
+    border-radius: 10px;
+    background: #212836;
+}
+
+.users-services-reviews-numbers .numbers-card {
+    display: flex;
+    min-height: 140px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #4f5ae0;
+    border-radius: 16px;
+    background: #3540d4;
+}
+
+.users-services-reviews-numbers .numbers-card h2 {
     margin: 0 0 8px;
-    font-size: 30px;
     color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
     text-align: center;
-    font-weight: 600;
-    
 }
 
-.users-services-reviews-numbers .numbers-card p{
+.users-services-reviews-numbers .numbers-card p {
     margin: 0;
-    color: #4b5563;
+    color: #e2e8f0;
+    font-size: 17px;
+    font-weight: 600;
     line-height: 1.5;
     text-align: center;
-    color: #ffffff;
-    font-weight: 600;   
-    font-size: 18px;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+    .home-hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .home-hero-content-right {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .home-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .users-services-reviews-numbers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .home-hero {
+        padding: 22px;
+    }
+
+    .home-hero h1 {
+        font-size: 27px;
+    }
+
+    .home-actions {
+        flex-direction: column;
+    }
+
+    .home-actions a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .users-services-reviews-numbers {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
 }

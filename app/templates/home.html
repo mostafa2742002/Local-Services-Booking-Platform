@@ -1,25 +1,40 @@
 {% extends "base.html" %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/home.css') }}"
+    >
 {% endblock %}
 
 {% block content %}
 
 <section class="home-hero">
     <div class="home-hero-content-left">
-        <h1>Book trusted local services <br><span style="color: #2563eb;">anytime, anywhere</span></h1>
+        <h1>
+            Book trusted local services
+            <br>
+            <span>anytime, anywhere</span>
+        </h1>
+
         <p>
-            Find service providers, send booking requests, and track your bookings from one place.
+            Find service providers, send booking requests,
+            and track your bookings from one place.
         </p>
 
         <div class="home-actions">
-            <a href="{{ url_for('services.list_services') }}" class="primary-btn">
+            <a
+                href="{{ url_for('services.list_services') }}"
+                class="primary-btn"
+            >
                 Browse Services
             </a>
 
             {% if not session.get("user_id") %}
-                <a href="{{ url_for('users.show_register_page') }}" class="secondary-btn">
+                <a
+                    href="{{ url_for('users.show_register_page') }}"
+                    class="secondary-btn"
+                >
                     Create Account
                 </a>
             {% endif %}
@@ -27,40 +42,46 @@
     </div>
 
     <div class="home-hero-content-right">
-        <img src="{{ url_for('static', filename='images/home/hero_section-removebg.png') }}" alt="Home Hero Image">
+        <img
+            src="{{ url_for('static', filename='images/home/hero_section-removebg.png') }}"
+            alt="Local services booking"
+        >
     </div>
 </section>
 
 <section class="home-summary">
+
     <div class="summary-card">
         <i class="fa-solid fa-user fa-2xl icons"></i>
+
         <div>
             <h2>Customers</h2>
             <p>Browse services and create booking requests.</p>
         </div>
-        
     </div>
 
     <div class="summary-card">
         <i class="fa-solid fa-briefcase fa-2xl icons"></i>
+
         <div>
             <h2>Providers</h2>
             <p>Accept, reject, start, and complete bookings.</p>
         </div>
-        
     </div>
 
     <div class="summary-card">
         <i class="fa-solid fa-shield-halved fa-2xl icons"></i>
+
         <div>
             <h2>Admins</h2>
             <p>View users, services, bookings, and reviews.</p>
         </div>
     </div>
+
 </section>
 
+<section class="users-services-reviews-numbers">
 
-<section class="users-services-reviews-numbers" >
     <div class="numbers-card">
         <h2>{{ summary.users_count }}</h2>
         <p>Total Users</p>
@@ -80,7 +101,7 @@
         <h2>{{ summary.bookings_count }}</h2>
         <p>Total Bookings</p>
     </div>
-    
+
 </section>
 
 {% endblock %}
