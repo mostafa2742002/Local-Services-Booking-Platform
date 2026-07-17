@@ -1,6 +1,6 @@
 .page-header {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: #212836;
+    border: 1px solid #354055;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
@@ -9,34 +9,36 @@
 .back-link {
     display: inline-block;
     margin-bottom: 14px;
-    color: #2563eb;
+    color: #6f9eff;
     font-weight: 700;
 }
 
 .back-link:hover {
-    color: #1d4ed8;
+    color: #94b7ff;
 }
 
 .page-header h1 {
     margin: 0 0 10px;
     font-size: 30px;
-    color: #111827;
+    color: #f8fafc;
 }
 
 .page-header p {
     margin: 0;
     max-width: 760px;
-    color: #4b5563;
+    color: #cbd5e1;
     font-size: 16px;
     line-height: 1.6;
 }
 
+/* Details Card */
+
 .details-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 24px;
     max-width: 720px;
+    padding: 24px;
+    background: #212836;
+    border: 1px solid #354055;
+    border-radius: 12px;
 }
 
 .details-row {
@@ -45,7 +47,7 @@
     align-items: center;
     gap: 24px;
     padding: 16px 0;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #354055;
 }
 
 .details-row:first-child {
@@ -53,35 +55,44 @@
 }
 
 .details-row strong {
-    color: #374151;
+    color: #94a3b8;
     font-size: 15px;
 }
 
 .details-row span {
-    color: #111827;
+    padding: 7px 11px;
+    background: #111629;
+    border: 1px solid #354055;
+    border-radius: 8px;
+    color: #f8fafc;
     font-weight: 700;
     text-align: right;
 }
+
+/* Actions */
 
 .details-actions {
     margin-top: 24px;
 }
 
-.primary-btn {
+.details-actions .primary-btn {
     display: inline-block;
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
     padding: 13px 18px;
+    border: none;
     border-radius: 10px;
+    background: #6f9eff;
+    color: #111629;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    text-align: center;
 }
 
-.primary-btn:hover {
-    background: #1d4ed8;
+.details-actions .primary-btn:hover {
+    background: #5d8df4;
 }
+
+/* Responsive */
 
 @media (max-width: 640px) {
     .page-header,
@@ -89,18 +100,22 @@
         padding: 18px;
     }
 
+    .page-header h1 {
+        font-size: 26px;
+    }
+
     .details-row {
         align-items: flex-start;
         flex-direction: column;
-        gap: 6px;
+        gap: 8px;
     }
 
     .details-row span {
+        width: 100%;
         text-align: left;
     }
 
-    .primary-btn {
+    .details-actions .primary-btn {
         width: 100%;
-        text-align: center;
     }
 }
