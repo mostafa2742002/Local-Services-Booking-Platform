@@ -139,3 +139,12 @@ def delete(service: LocalService) -> None:
             return
 
     raise ValueError("Service not found")
+
+
+def delete_service_image(image_filename: str) -> None:
+    image_path = Path("app/static/images/services") / image_filename
+
+    if image_path.exists():
+        image_path.unlink()
+    
+    
