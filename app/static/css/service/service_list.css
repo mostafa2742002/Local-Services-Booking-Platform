@@ -1,6 +1,6 @@
 .page-header {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: #212836;
+    border: 1px solid #354055;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 20px;
@@ -9,19 +9,21 @@
 .page-header h1 {
     margin: 0 0 8px;
     font-size: 28px;
-    color: #111827;
+    color: #f8fafc;
 }
 
 .page-header p {
     margin: 0;
-    color: #4b5563;
+    color: #cbd5e1;
     font-size: 16px;
 }
 
+/* Search and Filter */
+
 .search-bar,
 .filter-bar {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: #212836;
+    border: 1px solid #354055;
     border-radius: 12px;
     padding: 18px;
     margin-bottom: 16px;
@@ -38,32 +40,41 @@
 .filter-bar select {
     flex: 1;
     padding: 12px 14px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #354055;
     border-radius: 10px;
+    background: #111629;
+    color: #f8fafc;
     font-size: 15px;
-    color: #111827;
-    background: #ffffff;
+}
+
+.search-bar input::placeholder {
+    color: #94a3b8;
 }
 
 .search-bar input:focus,
 .filter-bar select:focus {
     outline: none;
-    border-color: #2563eb;
+    border-color: #6f9eff;
+}
+
+.filter-bar select option {
+    background: #111629;
+    color: #f8fafc;
 }
 
 .filter-bar label {
+    color: #cbd5e1;
     font-weight: 700;
-    color: #374151;
     white-space: nowrap;
 }
 
 .search-bar button,
 .filter-bar button {
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
     padding: 12px 18px;
+    border: none;
     border-radius: 10px;
+    background: #6f9eff;
+    color: #111629;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
@@ -72,8 +83,10 @@
 
 .search-bar button:hover,
 .filter-bar button:hover {
-    background: #1d4ed8;
+    background: #5d8df4;
 }
+
+/* Services */
 
 .services-list {
     display: grid;
@@ -86,30 +99,30 @@
     grid-template-columns: 180px 1fr auto;
     align-items: center;
     gap: 20px;
-
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
     padding: 18px;
+    background: #212836;
+    border: 1px solid #354055;
+    border-radius: 14px;
 }
 
 .service-card img {
     width: 180px;
     height: 130px;
     object-fit: cover;
+    border: 1px solid #354055;
     border-radius: 12px;
-    background: #f3f4f6;
+    background: #111629;
 }
 
 .service-card h2 {
     margin: 0 0 8px;
+    color: #f8fafc;
     font-size: 22px;
-    color: #111827;
 }
 
 .service-card p {
     margin: 0 0 14px;
-    color: #4b5563;
+    color: #cbd5e1;
     line-height: 1.5;
 }
 
@@ -120,49 +133,55 @@
 }
 
 .service-meta span {
-    background: #f3f4f6;
-    color: #374151;
     padding: 6px 10px;
+    border: 1px solid #354055;
     border-radius: 999px;
+    background: #111629;
+    color: #94b7ff;
     font-size: 14px;
     font-weight: 700;
 }
 
-.primary-btn {
+/* Button */
+
+.service-card .primary-btn {
     display: inline-block;
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
     padding: 12px 16px;
+    border: none;
     border-radius: 10px;
+    background: #6f9eff;
+    color: #111629;
     font-size: 15px;
     font-weight: 700;
-    cursor: pointer;
     text-align: center;
     white-space: nowrap;
 }
 
-.primary-btn:hover {
-    background: #1d4ed8;
+.service-card .primary-btn:hover {
+    background: #5d8df4;
 }
 
+/* Empty State */
+
 .empty-state {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
     padding: 32px;
+    background: #212836;
+    border: 1px solid #354055;
+    border-radius: 12px;
     text-align: center;
 }
 
 .empty-state h2 {
     margin: 0 0 8px;
-    color: #111827;
+    color: #f8fafc;
 }
 
 .empty-state p {
     margin: 0;
-    color: #4b5563;
+    color: #cbd5e1;
 }
+
+/* Responsive */
 
 @media (max-width: 900px) {
     .service-card {

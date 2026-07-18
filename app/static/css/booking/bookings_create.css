@@ -1,6 +1,6 @@
 .page-header {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: #212836;
+    border: 1px solid #354055;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
@@ -8,15 +8,17 @@
 
 .page-header h1 {
     margin: 0 0 8px;
+    color: #f8fafc;
     font-size: 28px;
-    color: #111827;
 }
 
 .page-header p {
     margin: 0;
-    color: #4b5563;
+    color: #cbd5e1;
     font-size: 16px;
 }
+
+/* Booking Card */
 
 .booking-form-section {
     display: flex;
@@ -26,32 +28,34 @@
 .booking-card {
     width: 100%;
     max-width: 680px;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
     padding: 26px;
+    background: #212836;
+    border: 1px solid #354055;
+    border-radius: 14px;
 }
 
 .booking-card h2 {
     margin: 0 0 18px;
+    color: #f8fafc;
     font-size: 24px;
-    color: #111827;
 }
 
 .booking-card p {
     margin: 0 0 10px;
-    color: #4b5563;
+    color: #cbd5e1;
     font-size: 15px;
 }
 
 .booking-card p strong {
-    color: #374151;
+    color: #6f9eff;
 }
+
+/* Booking Form */
 
 .booking-form {
     margin-top: 26px;
     padding-top: 22px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid #354055;
 }
 
 .form-group {
@@ -61,7 +65,7 @@
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #374151;
+    color: #cbd5e1;
     font-weight: 700;
 }
 
@@ -69,17 +73,27 @@
 .form-group textarea {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #d1d5db;
+    background: #111629;
+    border: 1px solid #354055;
     border-radius: 10px;
+    color: #f8fafc;
     font-size: 15px;
-    color: #111827;
-    background: #ffffff;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #94a3b8;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #2563eb;
+    border-color: #6f9eff;
+}
+
+.form-group input[type="date"],
+.form-group input[type="time"] {
+    color-scheme: dark;
 }
 
 .form-group textarea {
@@ -88,21 +102,25 @@
     line-height: 1.5;
 }
 
-.primary-btn {
+/* Button */
+
+.booking-form .primary-btn {
     width: 100%;
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
     padding: 13px 18px;
+    border: none;
     border-radius: 10px;
+    background: #6f9eff;
+    color: #111629;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
 }
 
-.primary-btn:hover {
-    background: #1d4ed8;
+.booking-form .primary-btn:hover {
+    background: #5d8df4;
 }
+
+/* Responsive */
 
 @media (max-width: 640px) {
     .page-header,

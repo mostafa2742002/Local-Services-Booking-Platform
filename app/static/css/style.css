@@ -2,44 +2,52 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    color: #1f2937;
+html {
     height: 100%;
 }
 
+body {
+    margin: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background: #131726;
+    color: #f8fafc;
+}
+
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 /* Header */
 
 .site-header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+    background: #212836;
+    border-bottom: 1px solid #354055;
 }
 
 .navbar {
     max-width: 1100px;
     margin: 0 auto;
     padding: 16px 24px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
 }
 
 .logo {
+    color: #6f9eff;
     font-size: 20px;
     font-weight: 700;
-    color: #2563eb;
+    white-space: nowrap;
 }
 
 .logo i {
     margin-right: 8px;
+    color: #6f9eff;
 }
 
 .nav-links {
@@ -49,30 +57,33 @@ a {
 }
 
 .nav-links a {
-    color: #374151;
+    color: #cbd5e1;
     font-weight: 600;
+    transition: color 0.2s;
 }
 
 .nav-links a i {
     margin-right: 6px;
+    color: #6f9eff;
 }
 
 .nav-links a:hover {
-    color: #2563eb;
+    color: #6f9eff;
 }
 
 .user-name {
-    color: #111827;
+    color: #f8fafc;
     font-weight: 700;
 }
 
 /* Page */
 
 .page-content {
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 32px 24px;
-    height: 100%;
+    flex: 1;
 }
 
 /* Flash Messages */
@@ -82,59 +93,93 @@ a {
 }
 
 .flash-message {
-    padding: 12px 14px;
-    border-radius: 10px;
+    padding: 13px 15px;
     margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 10px;
     font-weight: 600;
 }
 
 .flash-success {
-    background: #dcfce7;
-    color: #166534;
+    background: #173d2c;
+    border-color: #26704c;
+    color: #86efac;
 }
 
 .flash-error {
-    background: #fee2e2;
-    color: #991b1b;
+    background: #451d27;
+    border-color: #7f2d3b;
+    color: #fca5a5;
 }
 
 .flash-warning {
-    background: #fef3c7;
-    color: #92400e;
+    background: #453817;
+    border-color: #806723;
+    color: #fde68a;
 }
 
 .flash-info {
-    background: #dbeafe;
-    color: #1e40af;
+    background: #172f55;
+    border-color: #315e9d;
+    color: #93c5fd;
 }
 
 /* Common Buttons */
 
 .primary-btn {
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
     padding: 13px 16px;
+    border: none;
     border-radius: 10px;
+    background: #6f9eff;
+    color: #111629;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .primary-btn:hover {
-    background: #1d4ed8;
+    background: #5d8df4;
 }
 
+/* Footer */
 
 .site-footer {
-    background: #1f2937;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px 0;
     margin-top: 40px;
+    padding: 20px 24px;
+    background: #212836;
+    border-top: 1px solid #354055;
+    color: #94a3b8;
+    text-align: center;
 }
 
 .site-footer p {
     margin: 0;
     font-size: 14px;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar,
+    .page-content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
 }

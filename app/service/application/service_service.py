@@ -9,8 +9,11 @@ from app.service.infrastructure.service_repository import (
     find_by_provider_id,
     save,
     update,
-    delete
+    delete,
+    delete_service_image
 )
+from app.booking.infrastructure.booking_repository import delete_service_appointments
+from app.review.infrastructure.review_repository import delete_service_reviews
 
 
 def get_available_services(query: str = "", category: str = "") -> list[LocalService]:
@@ -88,6 +91,9 @@ def delete_service_by_id(service_id: UUID) -> None:
         raise ValueError("Service not found")
 
     delete(service)
+    delete_service_image(service.image_filename)
+    delete_service_appointments(service_id)
+    delete_service_reviews(service_id)
 
 
 def get_service_name(service_id: UUID) -> str:

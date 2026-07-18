@@ -1,6 +1,6 @@
 .page-header {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: #212836;
+    border: 1px solid #354055;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
@@ -9,50 +9,54 @@
 .back-link {
     display: inline-block;
     margin-bottom: 14px;
-    color: #2563eb;
+    color: #6f9eff;
     font-weight: 700;
 }
 
 .back-link:hover {
-    color: #1d4ed8;
+    color: #94b7ff;
 }
 
 .page-header h1 {
     margin: 0 0 10px;
+    color: #f8fafc;
     font-size: 28px;
-    color: #111827;
 }
 
 .page-header p {
     margin: 0;
-    color: #4b5563;
+    color: #cbd5e1;
     font-size: 16px;
 }
 
 .page-header strong {
-    color: #111827;
+    color: #6f9eff;
 }
+
+/* Review Card */
 
 .review-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 24px;
     max-width: 780px;
+    padding: 24px;
+    background: #212836;
+    border: 1px solid #354055;
+    border-radius: 12px;
 }
 
+/* Booking Summary */
+
 .booking-summary {
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
     padding: 20px;
     margin-bottom: 24px;
+    background: #111629;
+    border: 1px solid #354055;
+    border-radius: 12px;
 }
 
 .booking-summary h2 {
     margin: 0 0 18px;
+    color: #f8fafc;
     font-size: 20px;
-    color: #111827;
 }
 
 .summary-grid {
@@ -65,18 +69,25 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    padding: 12px;
+    background: #1a2030;
+    border: 1px solid #354055;
+    border-radius: 9px;
 }
 
 .summary-grid strong {
-    color: #6b7280;
+    color: #94a3b8;
     font-size: 14px;
 }
 
 .summary-grid span {
-    color: #111827;
+    color: #f8fafc;
     font-size: 15px;
     font-weight: 700;
+    word-break: break-word;
 }
+
+/* Review Form */
 
 .review-form {
     width: 100%;
@@ -89,7 +100,7 @@
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #374151;
+    color: #cbd5e1;
     font-weight: 700;
 }
 
@@ -97,17 +108,22 @@
 .form-group textarea {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #d1d5db;
+    background: #111629;
+    border: 1px solid #354055;
     border-radius: 10px;
+    color: #f8fafc;
     font-size: 15px;
-    color: #111827;
-    background: #ffffff;
 }
 
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #2563eb;
+    border-color: #6f9eff;
+}
+
+.form-group select option {
+    background: #111629;
+    color: #f8fafc;
 }
 
 .form-group textarea {
@@ -116,21 +132,29 @@
     line-height: 1.5;
 }
 
-.primary-btn {
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+/* Button */
+
+.review-form .primary-btn {
     display: inline-block;
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
     padding: 13px 18px;
+    border: none;
     border-radius: 10px;
+    background: #6f9eff;
+    color: #111629;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
 }
 
-.primary-btn:hover {
-    background: #1d4ed8;
+.review-form .primary-btn:hover {
+    background: #5d8df4;
 }
+
+/* Responsive */
 
 @media (max-width: 768px) {
     .page-header,
@@ -142,7 +166,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .primary-btn {
+    .review-form .primary-btn {
         width: 100%;
     }
 }

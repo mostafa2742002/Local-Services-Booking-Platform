@@ -2,59 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{{ title or "Local Services Booking Platform" }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
     {% block styles %}
     {% endblock %}
-    <script src="https://kit.fontawesome.com/8bac51296e.js" crossorigin="anonymous"></script>
+
+    <script
+        src="https://kit.fontawesome.com/8bac51296e.js"
+        crossorigin="anonymous"
+    ></script>
 </head>
+
 <body>
 
     <header class="site-header">
         <nav class="navbar">
+
             <a href="{{ url_for('home') }}" class="logo">
-                <i class="fa-solid fa-house" style="color: rgb(24, 86, 198);"></i>
+                <i class="fa-solid fa-house"></i>
                 Local Services
             </a>
 
-
             <div class="nav-links">
+
                 <a href="{{ url_for('home') }}">
-                    <i class="fa-solid fa-house" style="color: rgb(24, 86, 198);"></i>
+                    <i class="fa-solid fa-house"></i>
                     Home
                 </a>
 
-
                 {% if session.get("user_id") %}
+
                     {% if session.get("user_role") == "CUSTOMER" %}
                         <a href="{{ url_for('services.list_services') }}">
-                            <i class="fa-solid fa-list" style="color: rgb(24, 86, 198);"></i>
+                            <i class="fa-solid fa-list"></i>
                             Services
                         </a>
+
                         <a href="{{ url_for('bookings.show_customer_bookings') }}">
-                            <i class="fa-solid fa-calendar" style="color: rgb(24, 86, 198);"></i>
+                            <i class="fa-solid fa-calendar"></i>
                             My Bookings
                         </a>
+
                         <a href="{{ url_for('reviews.show_customer_reviews') }}">
-                            <i class="fa-solid fa-star" style="color: rgb(24, 86, 198);"></i>
+                            <i class="fa-solid fa-star"></i>
                             My Reviews
                         </a>
                     {% endif %}
 
                     {% if session.get("user_role") == "PROVIDER" %}
                         <a href="{{ url_for('services.show_provider_services') }}">
-                            <i class="fa-solid fa-briefcase" style="color: rgb(24, 86, 198);"></i>
+                            <i class="fa-solid fa-briefcase"></i>
                             My Services
                         </a>
+
                         <a href="{{ url_for('bookings.show_provider_bookings') }}">
-                            <i class="fa-solid fa-calendar-check" style="color: rgb(24, 86, 198);"></i>
+                            <i class="fa-solid fa-calendar-check"></i>
                             Booking Requests
                         </a>
                     {% endif %}
 
                     {% if session.get("user_role") == "ADMIN" %}
                         <a href="{{ url_for('admin.show_admin_dashboard') }}">
-                            <i class="fa-solid fa-shield-halved" style="color: rgb(24, 86, 198);"></i>
+                            <i class="fa-solid fa-shield-halved"></i>
                             Admin Dashboard
                         </a>
                     {% endif %}
@@ -63,17 +79,24 @@
                         {{ session.get("user_name") }}
                     </span>
 
-                    <a href="{{ url_for('users.logout') }}">Logout</a>
+                    <a href="{{ url_for('users.logout') }}">
+                        Logout
+                    </a>
+
                 {% else %}
+
                     <a href="{{ url_for('users.show_login_page') }}">
-                        <i class="fa-solid fa-right-to-bracket" style="color: rgb(24, 86, 198);"></i>
+                        <i class="fa-solid fa-right-to-bracket"></i>
                         Login
                     </a>
+
                     <a href="{{ url_for('users.show_register_page') }}">
-                        <i class="fa-solid fa-user-plus" style="color: rgb(24, 86, 198);"></i>
+                        <i class="fa-solid fa-user-plus"></i>
                         Register
                     </a>
+
                 {% endif %}
+
             </div>
         </nav>
     </header>
@@ -98,7 +121,11 @@
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2024 Local Services Booking Platform. All rights reserved.</p>
+        <p>
+            &copy; 2024 Local Services Booking Platform.
+            All rights reserved.
+        </p>
     </footer>
+
 </body>
 </html>
