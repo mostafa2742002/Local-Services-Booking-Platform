@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from app.extensions import csrf
 from app.admin.application.admin_dashboard_service import get_admin_dashboard_summary
 from app.user.api.user_routes import user_bp
 from app.service.api.service_routes import service_bp
@@ -9,6 +10,8 @@ from app.admin.api.admin_routes import admin_bp
 def create_app():
     app = Flask(__name__)
     app.config.from_object("config.Config")
+    csrf.init_app(app)
+
 
     register_blueprints(app)
     register_pages(app)

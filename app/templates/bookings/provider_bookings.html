@@ -54,7 +54,14 @@
                         <form
                             action="{{ url_for('bookings.accept_provider_booking', booking_id=booking.id) }}"
                             method="post"
-                        >
+                        >   
+
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}"
+                            >
+
                             <button type="submit" class="primary-btn">
                                 Accept
                             </button>
@@ -64,6 +71,13 @@
                             action="{{ url_for('bookings.reject_provider_booking', booking_id=booking.id) }}"
                             method="post"
                         >
+
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}"
+                            >
+
                             <button type="submit" class="danger-btn">
                                 Reject
                             </button>
@@ -75,6 +89,12 @@
                             action="{{ url_for('bookings.start_provider_booking', booking_id=booking.id) }}"
                             method="post"
                         >
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}"
+                            >
+
                             <button type="submit" class="primary-btn">
                                 Start
                             </button>
@@ -85,7 +105,14 @@
                         <form
                             action="{{ url_for('bookings.complete_provider_booking', booking_id=booking.id) }}"
                             method="post"
-                        >
+                        >   
+
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}"
+                            >
+
                             <button type="submit" class="primary-btn">
                                 Complete
                             </button>

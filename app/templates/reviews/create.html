@@ -47,6 +47,12 @@
         method="post"
         class="review-form"
     >
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="{{ csrf_token() }}"
+        >
+
         <div class="form-group">
             <label for="rating">Rating</label>
             <select id="rating" name="rating">
