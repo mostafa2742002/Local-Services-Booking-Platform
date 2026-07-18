@@ -114,6 +114,11 @@ def save(review: Review) -> Review:
 
     return review
 
+def delete_by_id(review_id: UUID) -> None:
+    reviews = load_reviews()
+    reviews = [review for review in reviews if review.id != review_id]
+    save_reviews(reviews)
+
 
 def delete_service_reviews(service_id: UUID) -> None:
     reviews = load_reviews()
