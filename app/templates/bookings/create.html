@@ -37,6 +37,13 @@
             data-booking-form
             id="booking-form"
         >
+
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}"
+            >
+            
             <div class="form-group">
                 <label for="booking_date">Booking Date</label>
                 <input

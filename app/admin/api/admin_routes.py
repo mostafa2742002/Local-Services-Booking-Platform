@@ -24,7 +24,7 @@ def show_admin_dashboard():
 @login_required
 @role_required("ADMIN")
 def delete_user(user_id):
-    delete_user_by_id(user_id)
+    delete_user_by_id(UUID(user_id))
     flash("User deleted successfully", "success")
     return redirect(url_for("admin.show_admin_dashboard"))
 

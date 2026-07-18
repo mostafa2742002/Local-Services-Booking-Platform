@@ -27,7 +27,7 @@
     },
     {
         "id": "22222222-2222-2222-2222-222222222222",
-        "provider_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
         "name": "AC Maintenance",
         "description": "Air conditioner inspection, cleaning, and basic maintenance.",
         "category": "Maintenance",
@@ -40,7 +40,7 @@
     },
     {
         "id": "11111111-1111-1111-1111-111111111111",
-        "provider_id": "9e231e0e-144d-4059-ac08-ac1e7039b7d6",
+        "provider_id": "0bddb758-870e-403a-8ee1-351fa3fd0d7f",
         "name": "Home Cleaning",
         "description": "General home cleaning service for apartments and small homes.",
         "category": "Cleaning",

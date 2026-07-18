@@ -18,6 +18,13 @@
 
 <section class="form-card">
     <form action="{{ url_for('services.submit_create_service_form') }}" method="post" class="service-form" enctype="multipart/form-data">
+        
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="{{ csrf_token() }}"
+        >
+
         <div class="form-group">
             <label for="name">Service Name</label>
             <input

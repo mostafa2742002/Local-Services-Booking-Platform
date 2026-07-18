@@ -121,6 +121,12 @@ def update(updated_booking: Booking) -> Booking:
     raise ValueError("Booking not found")
 
 
+def delete_by_id(booking_id: UUID) -> None:
+    bookings = load_bookings()
+    bookings = [booking for booking in bookings if booking.id != booking_id]
+    save_bookings(bookings)
+
+
 def delete_service_appointments(service_id: UUID) -> None:
     bookings = load_bookings()
     bookings = [booking for booking in bookings if booking.service_id != service_id]

@@ -80,6 +80,13 @@
                                 action="{{ url_for('bookings.cancel_customer_booking', booking_id=booking.id) }}"
                                 method="post"
                             >
+
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    value="{{ csrf_token() }}"
+                                >
+                                
                                 <button type="submit" class="danger-btn">
                                     <i class="fa-solid fa-xmark"></i>
                                     Cancel Booking
