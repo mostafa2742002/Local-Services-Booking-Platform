@@ -39,7 +39,7 @@ def test_create_booking_validation_rejects_invalid_time():
 
 def test_create_booking_validation_accepts_valid_data():
     errors = validate_create_booking_data(
-        booking_date="2026-01-01",
+        booking_date="2027-01-01",
         booking_time="10:30",
         address="Cairo",
         phone_number="01012345678"
