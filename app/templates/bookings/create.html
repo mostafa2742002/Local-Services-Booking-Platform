@@ -34,10 +34,8 @@
             action="{{ url_for('bookings.submit_create_booking_form', service_id=service.id) }}"
             method="post"
             class="booking-form"
-            data-booking-form
             id="booking-form"
         >
-
             <input
                 type="hidden"
                 name="csrf_token"

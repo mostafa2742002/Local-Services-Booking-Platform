@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookingDateInput = document.getElementById("booking_date");
     const bookingTimeInput = document.getElementById("booking_time");
     const bookingAddressInput = document.getElementById("address");
-
-    if (!problemDescriptionInput || !bookingForm) {
+    const phone_numberInput = document.getElementById("phone_number");
+    if (!problemDescriptionInput || !bookingForm || !bookingDateInput || !bookingTimeInput || !bookingAddressInput || !phone_numberInput) {
         return;
     }
 
@@ -29,12 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
         bookingAddressInput.value = savedDraft.bookingAddress;
     }
 
+    if (savedDraft.phone_number && phone_numberInput.value.trim() === "") {
+        phone_numberInput.value = savedDraft.phone_number;
+    }
+
     bookingForm.addEventListener("input", function () {
         localStorage.setItem(draftKey, JSON.stringify({
             problemDescription: problemDescriptionInput.value,
             bookingDate: bookingDateInput.value,
             bookingTime: bookingTimeInput.value,
-            bookingAddress: bookingAddressInput.value
+            bookingAddress: bookingAddressInput.value,
+            phone_number: phone_numberInput.value
         }));
     });
 
