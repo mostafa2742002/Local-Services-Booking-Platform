@@ -126,6 +126,19 @@ def submit_create_service_form():
 @role_required("PROVIDER")
 def delete_service(service_id):
 
+    provider_id = UUID(session["user_id"])
+    services = get_provider_services(provider_id)
+    found_service = None
+    for service in services:
+        if str(service.id) == service_id:
+            found_service = service
+            break
+    
+    if found_service is None:
+        flash("Service not found or you do not have permission to delete it.", "error")
+        return redirect(url_for("services.show_provider_services"))
+
+
     try:
         delete_service_by_id(UUID(service_id))
         flash("Service deleted successfully.", "success")

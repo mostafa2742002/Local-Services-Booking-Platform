@@ -97,7 +97,6 @@ def submit_create_booking_form(service_id):
         address=address.strip(),
         problem_description=problem_description,
         phone_number=phone_number.strip()
-
     )
 
     flash("Booking request created successfully.", "success")

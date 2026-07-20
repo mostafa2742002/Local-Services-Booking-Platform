@@ -25,6 +25,7 @@ def create_booking(
     local_service = get_service_details(service_id)
 
     now = datetime.now().isoformat(timespec="seconds")
+    # format "YYYY-MM-DDTHH:MM:SS"
 
     booking = Booking(
         id=uuid4(),

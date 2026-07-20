@@ -73,7 +73,7 @@ def get_all_categories() -> list[str]:
 
 
 def toggle_service_active_status_service(service_id: UUID) -> None:
-    print(f"Toggling active status for service with ID: {service_id}")
+
     service = find_by_id(service_id)
 
     if service is None:

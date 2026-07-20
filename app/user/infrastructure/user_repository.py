@@ -87,6 +87,5 @@ def save(user: User) -> User:
 
 def delete_by_id(user_id: str) -> None:
     users = load_users()
-    print(f"Deleting user with ID: {user_id}")
     users = [user for user in users if str(user.id) != str(user_id)]
     save_users(users)

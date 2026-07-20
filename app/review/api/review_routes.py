@@ -58,8 +58,7 @@ def show_create_review_page(booking_id):
 @login_required
 @role_required("CUSTOMER")
 def submit_create_review_form(booking_id, service_name):
-    print("Booking ID:", booking_id)
-    print("Service Name:", service_name)
+
     parsed_booking_id = parse_uuid(booking_id)
 
     if parsed_booking_id is None:

@@ -42,7 +42,7 @@ def delete_user_by_id(user_id: str) -> None:
     user = user_repository.find_by_id(user_id)
     if not user:
         raise ValueError("User not found")
-    print(f"Deleting user with ID: {user_id} and role: {user.role.value}")
+    
     if user.role.value == "PROVIDER":
         handle_delete_provider(user_id)
         
