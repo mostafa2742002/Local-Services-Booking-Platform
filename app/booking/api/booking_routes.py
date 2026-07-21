@@ -169,11 +169,31 @@ def cancel_customer_booking(booking_id):
 @role_required("PROVIDER")
 def show_provider_bookings():
     provider_id = UUID(session["user_id"])
-    bookings = get_provider_bookings(provider_id)
+
+    selected_status = request.args.get(
+        "status",
+        default="all",
+        type=str
+    ).strip().upper()
+
+    booking_status = None
+
+    if selected_status != "ALL":
+        try:
+            booking_status = BookingStatus(selected_status)
+        except ValueError:
+            selected_status = "ALL"
+
+    bookings = get_provider_bookings(
+        provider_id=provider_id,
+        status=booking_status
+    )
 
     return render_template(
         "bookings/provider_bookings.html",
-        bookings=bookings
+        bookings=bookings,
+        status_options=list(BookingStatus),
+        selected_status=selected_status.lower()
     )
 
 

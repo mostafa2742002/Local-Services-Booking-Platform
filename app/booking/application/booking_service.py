@@ -55,10 +55,7 @@ def get_booking_details(booking_id: UUID) -> Booking:
     return booking
 
 
-def get_customer_bookings(
-    customer_id: UUID,
-    status: BookingStatus | None = None
-):
+def get_customer_bookings(customer_id: UUID, status: BookingStatus | None = None):
     bookings = booking_repository.find_by_customer_id(customer_id)
 
     if status is not None:
@@ -71,8 +68,17 @@ def get_customer_bookings(
     return bookings
 
 
-def get_provider_bookings(provider_id: UUID) -> list[Booking]:
-    return find_by_provider_id(provider_id)
+def get_provider_bookings(provider_id: UUID,status: BookingStatus | None = None) -> list[Booking]:
+    bookings = find_by_provider_id(provider_id)
+
+    if status is not None:
+        bookings = [
+            booking
+            for booking in bookings
+            if booking.status == status
+        ]
+
+    return bookings
 
 
 def cancel_booking(customer_id: UUID, booking_id: UUID) -> Booking:

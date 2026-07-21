@@ -11,6 +11,29 @@
     <p>View and manage customer booking requests.</p>
 </section>
 
+<section class="booking-filters">
+
+    <a
+        href="{{ url_for('bookings.show_provider_bookings') }}"
+        class="filter-btn {% if selected_status == 'all' %}active{% endif %}"
+    >
+        All
+    </a>
+
+    {% for status in status_options %}
+        <a
+            href="{{ url_for(
+                'bookings.show_provider_bookings',
+                status=status.value|lower
+            ) }}"
+            class="filter-btn {% if selected_status == status.value|lower %}active{% endif %}"
+        >
+            {{ status.value|replace("_", " ")|title }}
+        </a>
+    {% endfor %}
+
+</section>
+
 <section class="bookings-list">
     {% if bookings %}
         {% for booking in bookings %}
@@ -22,7 +45,7 @@
                     </div>
 
                     <span class="status-badge status-{{ booking.status.value | lower }}">
-                        {{ booking.status.value }}
+                        {{ booking.get_status_label() }}
                     </span>
                 </div>
 
@@ -121,12 +144,35 @@
                 </div>
             </article>
         {% endfor %}
-    {% else %}
-        <div class="empty-state">
-            <h2>No booking requests yet</h2>
-            <p>Customer bookings will appear here when they book your services.</p>
-        </div>
-    {% endif %}
+        {% else %}
+            <div class="empty-state">
+
+                {% if selected_status != "all" %}
+                    <h2>No matching bookings</h2>
+
+                    <p>
+                        You do not have any
+                        {{ selected_status|replace("_", " ")|lower }}
+                        booking requests.
+                    </p>
+
+                    <a
+                        href="{{ url_for('bookings.show_provider_bookings') }}"
+                        class="primary-btn empty-state-btn"
+                    >
+                        Show All Bookings
+                    </a>
+                {% else %}
+                    <h2>No booking requests yet</h2>
+
+                    <p>
+                        Customer bookings will appear here when they book your services.
+                    </p>
+                {% endif %}
+
+            </div>
+        {% endif %}
+    
 </section>
 
 {% endblock %}
