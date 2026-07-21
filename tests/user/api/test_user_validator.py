@@ -30,7 +30,7 @@ def test_register_validation_rejects_short_password():
         role="customer"
     )
 
-    assert "Password must be at least 6 characters" in errors
+    assert "Password must contain at least one letter and one number and be at least 6 characters long" in errors
 
 
 def test_register_validation_rejects_password_mismatch():
@@ -49,8 +49,8 @@ def test_register_validation_accepts_valid_data():
     errors = validate_register_data(
         name="Test User",
         email="test@example.com",
-        password="123456",
-        confirm_password="123456",
+        password="Mostafa123456",
+        confirm_password="Mostafa123456",
         role="customer"
     )
 
