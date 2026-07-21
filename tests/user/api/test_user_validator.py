@@ -2,7 +2,7 @@ from app.user.api.user_validator import validate_register_data, validate_login_d
 
 
 def test_register_validation_requires_name_email_and_password():
-    errors = validate_register_data("", "", "", "")
+    errors = validate_register_data("", "", "", "", "")
 
     assert "Name is required" in errors
     assert "Email is required" in errors
@@ -14,7 +14,8 @@ def test_register_validation_rejects_invalid_email():
         name="Test User",
         email="invalid-email",
         password="123456",
-        confirm_password="123456"
+        confirm_password="123456",
+        role="customer"
     )
 
     assert "Email is invalid" in errors
@@ -25,7 +26,8 @@ def test_register_validation_rejects_short_password():
         name="Test User",
         email="test@example.com",
         password="123",
-        confirm_password="123"
+        confirm_password="123",
+        role="customer"
     )
 
     assert "Password must be at least 6 characters" in errors
@@ -36,7 +38,8 @@ def test_register_validation_rejects_password_mismatch():
         name="Test User",
         email="test@example.com",
         password="123456",
-        confirm_password="abcdef"
+        confirm_password="abcdef",
+        role="customer"
     )
 
     assert "Passwords do not match" in errors
@@ -47,7 +50,8 @@ def test_register_validation_accepts_valid_data():
         name="Test User",
         email="test@example.com",
         password="123456",
-        confirm_password="123456"
+        confirm_password="123456",
+        role="customer"
     )
 
     assert errors == []
