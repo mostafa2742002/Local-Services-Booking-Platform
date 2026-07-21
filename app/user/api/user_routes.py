@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 
 from app.user.application.user_service import register_user, login_user
 from app.user.api.user_validator import validate_register_data, validate_login_data
+from app.user.domain.role import Role
 
 user_bp = Blueprint("users", __name__, url_prefix="/auth")
 
@@ -19,8 +20,9 @@ def submit_register_form():
     email = request.form.get("email")
     password = request.form.get("password")
     confirm_password = request.form.get("confirm_password")
+    role = request.form.get("role")
 
-    errors = validate_register_data(name, email, password, confirm_password)
+    errors = validate_register_data(name, email, password, confirm_password, role)
 
     if errors:
         for error in errors:
@@ -29,14 +31,22 @@ def submit_register_form():
         return render_template(
             "auth/register.html",
             name=name,
-            email=email
+            email=email,
+            role=role
         )
+
+    actual_role = None
+    if role == "customer":
+        actual_role = Role("CUSTOMER")
+    elif role == "provider":
+        actual_role = Role("PROVIDER")
 
     try:
         register_user(
             name=name.strip(),
             email=email.strip().lower(),
-            password=password
+            password=password,
+            role=actual_role
         )
 
         flash("Account created successfully. Please login.", "success")
@@ -48,7 +58,8 @@ def submit_register_form():
         return render_template(
             "auth/register.html",
             name=name,
-            email=email
+            email=email,
+            role=role
         )
         
         

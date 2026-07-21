@@ -1,7 +1,7 @@
 import re
 
 
-def validate_register_data(name: str, email: str, password: str, confirm_password: str) -> list[str]:
+def validate_register_data(name: str, email: str, password: str, confirm_password: str, role: str) -> list[str]:
     errors = []
 
     if not name or name.strip() == "":
@@ -19,6 +19,9 @@ def validate_register_data(name: str, email: str, password: str, confirm_passwor
 
     if password != confirm_password:
         errors.append("Passwords do not match")
+
+    if not role:
+        errors.append("Role is required")
 
     return errors
 

@@ -104,6 +104,16 @@
     color: #94b7ff;
 }
 
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    background: #111629;
+    border: 1px solid #354055;
+    border-radius: 10px;
+    color: #f8fafc;
+    font-size: 15px;
+}
+
 @media (max-width: 520px) {
     .auth-page {
         min-height: auto;
