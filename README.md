@@ -68,5 +68,5 @@ No extra Python modules are required beyond the dependencies already listed in `
 Run the test suite with:
 
 ```powershell
-pytest
+pytest 
 ```
