@@ -3,6 +3,7 @@ from uuid import UUID, uuid4
 
 from app.booking.domain.booking import Booking
 from app.booking.domain.booking_status import BookingStatus
+from app.booking.infrastructure import booking_repository
 from app.booking.infrastructure.booking_repository import (
     find_by_id,
     find_by_customer_id,
@@ -54,8 +55,20 @@ def get_booking_details(booking_id: UUID) -> Booking:
     return booking
 
 
-def get_customer_bookings(customer_id: UUID) -> list[Booking]:
-    return find_by_customer_id(customer_id)
+def get_customer_bookings(
+    customer_id: UUID,
+    status: BookingStatus | None = None
+):
+    bookings = booking_repository.find_by_customer_id(customer_id)
+
+    if status is not None:
+        bookings = [
+            booking
+            for booking in bookings
+            if booking.status == status
+        ]
+
+    return bookings
 
 
 def get_provider_bookings(provider_id: UUID) -> list[Booking]:

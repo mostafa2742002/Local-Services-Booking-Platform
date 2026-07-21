@@ -2,6 +2,8 @@ from uuid import UUID
 
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 
+from app.booking.domain.booking_status import BookingStatus
+from app.booking.domain.booking_status import BookingStatus
 from app.common.security.auth_guard import login_required, role_required
 from app.service.application.service_service import get_service_details
 from app.booking.application.booking_service import (
@@ -108,11 +110,31 @@ def submit_create_booking_form(service_id):
 @role_required("CUSTOMER")
 def show_customer_bookings():
     customer_id = UUID(session["user_id"])
-    bookings = get_customer_bookings(customer_id)
+
+    selected_status = request.args.get(
+        "status",
+        default="all",
+        type=str
+    ).strip().upper()
+
+    booking_status = None
+
+    if selected_status != "ALL":
+        try:
+            booking_status = BookingStatus(selected_status)
+        except ValueError:
+            selected_status = "ALL"
+
+    bookings = get_customer_bookings(
+        customer_id=customer_id,
+        status=booking_status
+    )
 
     return render_template(
         "bookings/customer_bookings.html",
-        bookings=bookings
+        bookings=bookings,
+        status_options=list(BookingStatus),
+        selected_status=selected_status.lower()
     )
 
 

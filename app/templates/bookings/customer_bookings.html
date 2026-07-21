@@ -11,6 +11,29 @@
     <p>Track your booking requests and their current status.</p>
 </section>
 
+<section class="booking-filters">
+
+    <a
+        href="{{ url_for('bookings.show_customer_bookings') }}"
+        class="filter-btn {% if selected_status == 'all' %}active{% endif %}"
+    >
+        All
+    </a>
+
+    {% for status in status_options %}
+        <a
+            href="{{ url_for(
+                'bookings.show_customer_bookings',
+                status=status.value|lower
+            ) }}"
+            class="filter-btn {% if selected_status == status.value|lower %}active{% endif %}"
+        >
+            {{ status.value|replace("_", " ")|title }}
+        </a>
+    {% endfor %}
+
+</section>
+
 <section class="booking-list">
     {% if bookings %}
         {% for booking in bookings %}
@@ -112,12 +135,33 @@
         {% endfor %}
     {% else %}
         <div class="empty-card">
-            <p>You do not have any bookings yet.</p>
-            <a href="{{ url_for('services.list_services') }}" class="primary-btn">
-                Browse Services
-            </a>
+
+            {% if selected_status != "all" %}
+                <p>
+                    No
+                    {{ selected_status|replace("_", " ")|title }}
+                    bookings were found.
+                </p>
+
+                <a
+                    href="{{ url_for('bookings.show_customer_bookings') }}"
+                    class="primary-btn"
+                >
+                    Show All Bookings
+                </a>
+            {% else %}
+                <p>You do not have any bookings yet.</p>
+
+                <a
+                    href="{{ url_for('services.list_services') }}"
+                    class="primary-btn"
+                >
+                    Browse Services
+                </a>
+            {% endif %}
+
         </div>
-    {% endif %}
+{% endif %}
 </section>
 
 {% endblock %}
