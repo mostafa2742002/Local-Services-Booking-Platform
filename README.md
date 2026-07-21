@@ -1,323 +1,72 @@
 # Local Services Booking Platform
 
-A Flask web application that allows customers to book local services from providers.
+This is a Flask web application for booking local services between customers and providers. Customers can browse services, place bookings, save booking drafts in the browser with `localStorage`, and review completed work, while providers can publish services and manage booking requests through the full status flow.
 
-The project is built as a simple but complete V1 platform with authentication, services, bookings, reviews, admin dashboard, tests, and GitHub Actions.
+The main feature I implemented beyond the basic booking flow is browser-side booking draft persistence, so a partially completed booking form survives refreshes until the user submits it.
 
----
+## Prerequisites
 
-## Features
+No extra Python modules are required beyond the dependencies already listed in `requirements.txt`. The project uses Flask together with standard library modules such as `datetime`, `uuid`, `json`, `pathlib`, `os`, and `re`.
 
-### Authentication
+## Project Checklist
 
-- Register
-- Login
-- Logout
-- Session-based authentication
-- Role-based access control
-
-### User Roles
-
-- Customer
-- Provider
-- Admin
-
-### Customer Features
-
-- Browse available services
-- View service details
-- Create booking requests
-- View own bookings
-- Cancel pending bookings
-- Review completed bookings
-- View submitted reviews
-
-### Provider Features
-
-- Create services
-- View own services
-- View booking requests
-- Accept booking requests
-- Reject booking requests
-- Start accepted bookings
-- Complete in-progress bookings
-
-### Admin Features
-
-- View dashboard statistics
-- View users
-- View services
-- View bookings
-- View reviews
-
----
-
-## Booking Status Flow
-
-```text
-PENDING
-  ↓
-ACCEPTED
-  ↓
-IN_PROGRESS
-  ↓
-COMPLETED
-```
-
-Other possible statuses:
-
-- `REJECTED`
-- `CANCELLED`
-
-### Rules
-
-- New booking starts as `PENDING`.
-- Provider can accept or reject pending bookings.
-- Provider can start accepted bookings.
-- Provider can complete in-progress bookings.
-- Customer can cancel only pending bookings.
-- Customer can review only completed bookings.
-- Customer cannot review the same booking twice.
-
-## Tech Stack
-
-- Python
-- Flask
-- Jinja Templates
-- HTML
-- CSS
-- JSON file storage
-- Pytest
-- GitHub Actions
-
-## Project Structure
-
-```text
-local_services_app/
-├── app/
-│   ├── admin/
-│   ├── booking/
-│   ├── common/
-│   ├── review/
-│   ├── service/
-│   ├── user/
-│   ├── static/
-│   └── templates/
-├── data/
-├── docs/
-├── tests/
-├── .github/
-├── config.py
-├── requirements.txt
-├── run.py
-└── README.md
-```
-
-## Architecture
-
-The project uses a modular clean structure.
-
-Each main feature is separated into layers:
-
-```text
-module/
-├── api/
-├── application/
-├── domain/
-└── infrastructure/
-```
-
-### API Layer
-
-Handles Flask routes, request data, redirects, templates, and flash messages.
-
-### Application Layer
-
-Contains business logic and use cases.
-
-### Domain Layer
-
-Contains core entities and enums.
-
-### Infrastructure Layer
-
-Handles JSON storage and repository logic.
+- [ ] It is available on GitHub.
+- [x] It uses the Flask web framework.
+  - Entry point: [run.py](run.py#L1)
+  - App factory and blueprint registration: [app/__init__.py](app/__init__.py#L1)
+- [x] It uses at least one module from the Python Standard Library other than the random module.
+  - Module names: `datetime`, `uuid`, `json`, `pathlib`, `os`, `re`
+- [x] It contains at least one class written by you that has both properties and methods.
+  - Class definition: [app/booking/domain/booking.py](app/booking/domain/booking.py#L5)
+  - Two properties: `customer_id`, `status`
+  - Two methods: `get_status_label`, `can_customer_cancel`
+  - Methods used in the app: [app/templates/bookings/customer_bookings.html](app/templates/bookings/customer_bookings.html#L63), [app/templates/bookings/customer_bookings.html](app/templates/bookings/customer_bookings.html#L98), [app/templates/bookings/provider_bookings.html](app/templates/bookings/provider_bookings.html#L48)
+- [x] It makes use of JavaScript in the front end and uses the `localStorage` of the web browser.
+  - Booking draft handling: [app/static/js/booking_draft.js](app/static/js/booking_draft.js#L1)
+- [x] It uses modern JavaScript.
+  - The front-end scripts use `const` and modern DOM event handling in [app/static/js/booking_draft.js](app/static/js/booking_draft.js#L1) and [app/static/js/services.js](app/static/js/services.js#L1)
+- [x] It makes use of the reading and writing to the same file feature.
+  - JSON repositories read and write the same files in [app/booking/infrastructure/booking_repository.py](app/booking/infrastructure/booking_repository.py#L1), [app/service/infrastructure/service_repository.py](app/service/infrastructure/service_repository.py#L1), and [app/user/infrastructure/user_repository.py](app/user/infrastructure/user_repository.py#L1)
+- [x] It contains conditional statements.
+  - Example: [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py#L31)
+- [x] It contains loops.
+  - Example: [app/service/api/service_routes.py](app/service/api/service_routes.py#L94)
+- [x] It lets the user enter a value in a text box at some point.
+  - Booking form values are received and validated in [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py#L58) and [app/booking/api/booking_validator.py](app/booking/api/booking_validator.py#L1)
+  - Service form values are received and validated in [app/service/api/service_routes.py](app/service/api/service_routes.py#L63) and [app/service/api/service_validator.py](app/service/api/service_validator.py#L1)
+- [x] It doesn't generate any error message even if the user enters a wrong input.
+  - Invalid input is handled with validation and browser flash messages in [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py#L64) and [app/service/api/service_routes.py](app/service/api/service_routes.py#L74)
+- [x] It is styled using your own CSS.
+- [ ] The code follows the code and style conventions as introduced in the course, is fully documented using comments and doesn't contain unused or experimental code.
+- [ ] All exercises have been completed as per the requirements and pushed to the respective GitHub repository.
 
 ## Setup
 
-### 1. Clone the repository
+1. Create and activate a virtual environment:
 
-```bash
-git clone <repo-url>
-cd local_services_app
-```
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   ```
 
-### 2. Create virtual environment
+2. Install the dependencies:
 
-```bash
-python3 -m venv venv
-```
+   ```powershell
+   pip install -r requirements.txt
+   ```
 
-### 3. Activate virtual environment
+3. Run the app:
 
-```bash
-source venv/bin/activate
-```
+   ```powershell
+   python run.py
+   ```
 
-On Windows PowerShell:
+4. Open the app in your browser at `http://127.0.0.1:5000`.
+
+## Tests
+
+Run the test suite with:
 
 ```powershell
-.\venv\Scripts\Activate.ps1
-```
-
-### 4. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Run the app
-
-```bash
-python3 run.py
-```
-
-Open <http://127.0.0.1:5000>.
-
-## Run Tests
-
-```bash
-pytest
-```
-
-## Test Accounts
-
-For local testing, users are created from the register page.
-
-By default, registered users are created as `CUSTOMER`.
-
-To test provider or admin features in V1, manually update the user role inside `data/users.json`.
-
-Example:
-
-```json
-"role": "PROVIDER"
-```
-
-or:
-
-```json
-"role": "ADMIN"
-```
-
-## Main Routes
-
-### Auth
-
-- `/auth/register`
-- `/auth/login`
-- `/auth/logout`
-
-### Services
-
-- `/services/`
-- `/services/<service_id>`
-- `/services/provider/my-services`
-- `/services/provider/create`
-
-### Bookings
-
-- `/bookings/create/<service_id>`
-- `/bookings/my-bookings`
-- `/bookings/provider/requests`
-
-### Reviews
-
-- `/reviews/create/<booking_id>`
-- `/reviews/my-reviews`
-
-### Admin
-
-- `/admin/dashboard`
-
-## Testing and CI
-
-The project includes unit tests for:
-
-- User validation
-- User service
-- Service validation
-- Service service
-- Booking validation
-- Booking service
-- Review validation
-- Review service
-- Admin dashboard service
-
-GitHub Actions runs tests automatically on push and pull requests.
-
-## Development Workflow
-
-The project follows a feature-branch workflow:
-
-```text
-main
-  ↓
-feature/name
-  ↓
-pull request
-  ↓
-merge into main
-```
-
-Example branches:
-
-- `feature/user-auth`
-- `feature/services`
-- `feature/bookings`
-- `feature/reviews`
-- `feature/admin-dashboard`
-- `docs/readme`
-
-## V1 Scope
-
-Implemented in V1:
-
-- Authentication
-- Services
-- Bookings
-- Reviews
-- Admin dashboard
-- Unit tests
-- GitHub Actions
-
-Out of scope for V1:
-
-- Online payment
-- Chat
-- Notifications
-- Provider calendar
-- Google Maps
-- PostgreSQL database
-- Docker deployment
-- Advanced admin actions
-
-## Future Improvements
-
-- Move from JSON files to PostgreSQL
-- Add provider registration/admin approval
-- Add service editing and deletion
-- Add booking details page
-- Add admin user management
-- Add better dashboard analytics
-- Add pagination and search
-- Add Docker support
-- Add deployment configuration
-
----
-
-## Run Tests
-
-```bash
 pytest
 ```
