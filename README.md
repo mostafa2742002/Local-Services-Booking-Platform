@@ -12,40 +12,40 @@ No extra Python modules are required beyond the dependencies already listed in `
 
 - [x] It is available on GitHub.
 - [x] It uses the Flask web framework.
-  - File name: [run.py]
-  - Line number(s): [1]
-  - File name: [app/__init__.py]
-  - Line number(s): [10]
+  - File name: run.py
+  - Line number(s): 1
+  - File name: app/__init__.py
+  - Line number(s): 10
 - [x] It uses at least one module from the Python Standard Library other than the random module.
-  - File name: [app/booking/api/booking_validator.py]
-  - Line number(s): [1]
+  - File name: app/booking/api/booking_validator.py
+  - Line number(s): 1
 - [x] It contains at least one class written by you that has both properties and methods.
-  - File name: [app/booking/domain/booking.py]
-  - Line number(s): [5]
+  - File name: app/booking/domain/booking.py
+  - Line number(s): 5
 - [x] It makes use of JavaScript in the front end and uses the `localStorage` of the web browser.
-  - File name: [app/static/js/booking_draft.js]
-  - Line number(s): [15]
+  - File name: app/static/js/booking_draft.js
+  - Line number(s): 15
 - [x] It uses modern JavaScript.
-  - File name: [app/static/js/services.js]
-  - Line number(s): [27]
+  - File name: app/static/js/services.js
+  - Line number(s): 27
 - [x] It makes use of the reading and writing to the same file feature.
-  - File name: [app/booking/infrastructure/booking_repository.py]
-  - Line number(s): [40], [54]
+  - File name: app/booking/infrastructure/booking_repository.py
+  - Line number(s): 40, 54
 - [x] It contains conditional statements.
-  - File name: [app/booking/api/booking_routes.py]
-  - Line number(s): [27](app/booking/api/booking_routes.py#L27)
+  - File name: app/booking/api/booking_routes.py
+  - Line number(s): 27
 - [x] It contains loops.
-  - File name: [app/service/api/service_routes.py]
-  - Line number(s): [96]
+  - File name: app/service/api/service_routes.py
+  - Line number(s): 96
 - [x] It lets the user enter a value in a text box at some point.
-  - File name: [app/booking/api/booking_routes.py]
-  - Line number(s): [58](app/booking/api/booking_routes.py#L58)
+  - File name: app/booking/api/booking_routes.py
+  - Line number(s): 58
 - [x] It doesn't generate any error message even if the user enters a wrong input.
-  - File name: [app/booking/api/booking_routes.py]
-  - Line number(s): [75], [76], [79]
+  - File name: app/booking/api/booking_routes.py
+  - Line number(s): 75, 76, 79
 - [x] It is styled using your own CSS.
-  - File name: [app/static/css/style.css]
-  - Line number(s): [1]
+  - File name: app/static/css/style.css
+  - Line number(s): 1
 - [x] The code follows the code and style conventions as introduced in the course, is fully documented using comments and doesn't contain unused or experimental code.
 - [x] All exercises have been completed as per the requirements and pushed to the respective GitHub repository.
 
