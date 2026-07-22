@@ -7,8 +7,6 @@ menuToggle.addEventListener("click", function () {
 
     const menuIsOpen = navLinks.classList.contains("active");
 
-    menuToggle.setAttribute("aria-expanded", menuIsOpen);
-
     if (menuIsOpen) {
         menuIcon.classList.remove("fa-bars");
         menuIcon.classList.add("fa-xmark");
