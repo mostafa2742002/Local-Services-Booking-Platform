@@ -7,13 +7,13 @@ from app.user.domain.role import Role
 user_bp = Blueprint("users", __name__, url_prefix="/auth")
 
 
-
+# show the registration page
 @user_bp.get("/register")
 def show_register_page():
     return render_template("auth/register.html")
 
 
-
+# handle the submission of the registration form
 @user_bp.post("/register")
 def submit_register_form():
     name = request.form.get("name")
@@ -63,12 +63,12 @@ def submit_register_form():
         )
         
         
-
+# show the login page
 @user_bp.get("/login")
 def show_login_page():
     return render_template("auth/login.html")
 
-
+# handle the submission of the login form
 @user_bp.post("/login")
 def submit_login_form():
     email = request.form.get("email")
@@ -104,14 +104,14 @@ def submit_login_form():
             email=email
         )
 
-
+# handle the logout action
 @user_bp.get("/logout")
 def logout():
     session.clear()
     flash("Logged out successfully.", "success")
     return redirect(url_for("home"))
 
-
+# helper function to log the user in by storing their information in the session
 def login_user_in_session(user):
     session["user_id"] = str(user.id)
     session["user_name"] = user.name
