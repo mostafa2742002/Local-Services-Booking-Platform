@@ -142,6 +142,7 @@
         <table class="admin-table">
             <thead>
                 <tr>
+                    <th>Service Name</th>
                     <th>Rating</th>
                     <th>Comment</th>
                     <th>Created At</th>
@@ -151,9 +152,10 @@
             <tbody>
                 {% for review in dashboard_data.reviews %}
                     <tr>
+                        <td>{{ review.service_name }}</td>
                         <td>{{ review.rating }}/5</td>
                         <td>{{ review.comment or "No comment" }}</td>
-                        <td>{{ review.created_at }}</td>
+                        <td>{{ review.created_at.split("T")[0] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
