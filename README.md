@@ -12,31 +12,40 @@ No extra Python modules are required beyond the dependencies already listed in `
 
 - [x] It is available on GitHub.
 - [x] It uses the Flask web framework.
-  - Entry point: [run.py](run.py#L1)
-  - App factory and blueprint registration: [app/__init__.py](app/__init__.py#L1)
+  - File name: [run.py](run.py)
+  - Line number(s): [1](run.py#L1)
+  - File name: [app/__init__.py](app/__init__.py)
+  - Line number(s): [10](app/__init__.py#L10)
 - [x] It uses at least one module from the Python Standard Library other than the random module.
-  - Module names: `datetime`, `uuid`, `json`, `pathlib`, `os`, `re`
+  - File name: [app/booking/api/booking_validator.py](app/booking/api/booking_validator.py)
+  - Line number(s): [1](app/booking/api/booking_validator.py#L1)
 - [x] It contains at least one class written by you that has both properties and methods.
-  - Class definition: [app/booking/domain/booking.py](app/booking/domain/booking.py#L5)
-  - Two properties: `customer_id`, `status`
-  - Two methods: `get_status_label`, `can_customer_cancel`
-  - Methods used in the app: [app/templates/bookings/customer_bookings.html](app/templates/bookings/customer_bookings.html#L63), [app/templates/bookings/customer_bookings.html](app/templates/bookings/customer_bookings.html#L98), [app/templates/bookings/provider_bookings.html](app/templates/bookings/provider_bookings.html#L48)
+  - File name: [app/booking/domain/booking.py](app/booking/domain/booking.py)
+  - Line number(s): [5](app/booking/domain/booking.py#L5)
 - [x] It makes use of JavaScript in the front end and uses the `localStorage` of the web browser.
-  - Booking draft handling: [app/static/js/booking_draft.js](app/static/js/booking_draft.js#L1)
+  - File name: [app/static/js/booking_draft.js](app/static/js/booking_draft.js)
+  - Line number(s): [15](app/static/js/booking_draft.js#L15)
 - [x] It uses modern JavaScript.
-  - The front-end scripts use `const` and modern DOM event handling in [app/static/js/booking_draft.js](app/static/js/booking_draft.js#L1) and [app/static/js/services.js](app/static/js/services.js#L1)
+  - File name: [app/static/js/services.js](app/static/js/services.js)
+  - Line number(s): [27](app/static/js/services.js#L27)
 - [x] It makes use of the reading and writing to the same file feature.
-  - JSON repositories read and write the same files in [app/booking/infrastructure/booking_repository.py](app/booking/infrastructure/booking_repository.py#L1), [app/service/infrastructure/service_repository.py](app/service/infrastructure/service_repository.py#L1), and [app/user/infrastructure/user_repository.py](app/user/infrastructure/user_repository.py#L1)
+  - File name: [app/booking/infrastructure/booking_repository.py](app/booking/infrastructure/booking_repository.py)
+  - Line number(s): [40](app/booking/infrastructure/booking_repository.py#L40), [54](app/booking/infrastructure/booking_repository.py#L54)
 - [x] It contains conditional statements.
-  - Example: [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py#L31)
+  - File name: [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py)
+  - Line number(s): [27](app/booking/api/booking_routes.py#L27)
 - [x] It contains loops.
-  - Example: [app/service/api/service_routes.py](app/service/api/service_routes.py#L94)
+  - File name: [app/service/api/service_routes.py](app/service/api/service_routes.py)
+  - Line number(s): [96](app/service/api/service_routes.py#L96)
 - [x] It lets the user enter a value in a text box at some point.
-  - Booking form values are received and validated in [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py#L58) and [app/booking/api/booking_validator.py](app/booking/api/booking_validator.py#L1)
-  - Service form values are received and validated in [app/service/api/service_routes.py](app/service/api/service_routes.py#L63) and [app/service/api/service_validator.py](app/service/api/service_validator.py#L1)
+  - File name: [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py)
+  - Line number(s): [58](app/booking/api/booking_routes.py#L58)
 - [x] It doesn't generate any error message even if the user enters a wrong input.
-  - Invalid input is handled with validation and browser flash messages in [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py#L64) and [app/service/api/service_routes.py](app/service/api/service_routes.py#L74)
+  - File name: [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py)
+  - Line number(s): [75](app/booking/api/booking_routes.py#L75), [76](app/booking/api/booking_routes.py#L76), [79](app/booking/api/booking_routes.py#L79)
 - [x] It is styled using your own CSS.
+  - File name: [app/static/css/style.css](app/static/css/style.css)
+  - Line number(s): [1](app/static/css/style.css#L1)
 - [x] The code follows the code and style conventions as introduced in the course, is fully documented using comments and doesn't contain unused or experimental code.
 - [x] All exercises have been completed as per the requirements and pushed to the respective GitHub repository.
 
