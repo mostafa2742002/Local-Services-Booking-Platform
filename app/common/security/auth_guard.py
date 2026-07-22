@@ -2,7 +2,7 @@ from functools import wraps
 
 from flask import session, flash, redirect, url_for
 
-
+# decorator to ensure that a user is logged in before accessing a route
 def login_required(route_function):
     @wraps(route_function)
     def wrapper(*args, **kwargs):
@@ -14,7 +14,7 @@ def login_required(route_function):
 
     return wrapper
 
-
+# decorator to ensure that a user has the required role before accessing a route
 def role_required(required_role: str):
     def decorator(route_function):
         @wraps(route_function)
