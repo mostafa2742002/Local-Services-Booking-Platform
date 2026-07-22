@@ -13,7 +13,7 @@ from app.review.infrastructure.review_repository import (
     save
 )
 
-
+# service function to create a new review for a specific booking
 def create_review(
     customer_id: UUID,
     booking_id: UUID,
@@ -51,19 +51,19 @@ def create_review(
 
     return save(review)
 
-
+# service function to get all reviews for a specific customer
 def get_customer_reviews(customer_id: UUID) -> list[Review]:
     return find_by_customer_id(customer_id)
 
-
+# service function to get all reviews for a specific provider
 def get_provider_reviews(provider_id: UUID) -> list[Review]:
     return find_by_provider_id(provider_id)
 
-
+# service function to get all reviews for a specific service
 def get_service_reviews(service_id: UUID) -> list[Review]:
     return find_by_service_id(service_id)
 
-
+# service function to check if a specific booking has already been reviewed
 def booking_has_review(booking_id: UUID) -> bool:
     review = find_by_booking_id(booking_id)
 

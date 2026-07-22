@@ -15,11 +15,11 @@ from app.service.infrastructure.service_repository import (
 from app.booking.infrastructure.booking_repository import delete_service_appointments
 from app.review.infrastructure.review_repository import delete_service_reviews
 
-
+# service function to get all available services, optionally filtered by query and category
 def get_available_services(query: str = "", category: str = "") -> list[LocalService]:
     return find_active_services(query=query, category=category)
 
-
+# service function to get the details of a specific service
 def get_service_details(service_id: UUID) -> LocalService:
     service = find_by_id(service_id)
 
@@ -31,11 +31,11 @@ def get_service_details(service_id: UUID) -> LocalService:
 
     return service
 
-
+# service function to get all services for a specific provider
 def get_provider_services(provider_id: UUID) -> list[LocalService]:
     return find_by_provider_id(provider_id)
 
-
+# service function to create a new local service for a provider
 def create_local_service(
     provider_id: UUID,
     name: str,
@@ -65,13 +65,13 @@ def create_local_service(
 
     return save(service)
 
-
+# service function to get all unique categories from the available services
 def get_all_categories() -> list[str]:
     services = find_active_services()
     categories = [service.category for service in services]
     return sorted(categories)
 
-
+# service function to toggle the active status of a specific service
 def toggle_service_active_status_service(service_id: UUID) -> None:
 
     service = find_by_id(service_id)
@@ -83,7 +83,7 @@ def toggle_service_active_status_service(service_id: UUID) -> None:
     service.updated_at = datetime.now().isoformat(timespec="seconds")
     update(service)
 
-
+# service function to delete a specific service by its ID
 def delete_service_by_id(service_id: UUID) -> None:
     service = find_by_id(service_id)
 
@@ -95,7 +95,7 @@ def delete_service_by_id(service_id: UUID) -> None:
     delete_service_appointments(service_id)
     delete_service_reviews(service_id)
 
-
+# service function to get the name of a specific service
 def get_service_name(service_id: UUID) -> str:
     service = find_by_id(service_id)
 

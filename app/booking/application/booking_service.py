@@ -13,7 +13,7 @@ from app.booking.infrastructure.booking_repository import (
 )
 from app.service.application.service_service import get_service_details
 
-
+# service function to create a new booking
 def create_booking(
     customer_id: UUID,
     service_id: UUID,
@@ -45,7 +45,7 @@ def create_booking(
 
     return save(booking)
 
-
+# service function to get the details of a specific booking
 def get_booking_details(booking_id: UUID) -> Booking:
     booking = find_by_id(booking_id)
 
@@ -54,7 +54,7 @@ def get_booking_details(booking_id: UUID) -> Booking:
 
     return booking
 
-
+# service function to get all bookings for a specific customer, optionally filtered by status
 def get_customer_bookings(customer_id: UUID, status: BookingStatus | None = None):
     bookings = booking_repository.find_by_customer_id(customer_id)
 
@@ -67,7 +67,7 @@ def get_customer_bookings(customer_id: UUID, status: BookingStatus | None = None
 
     return bookings
 
-
+# service function to get all bookings for a specific provider, optionally filtered by status
 def get_provider_bookings(provider_id: UUID,status: BookingStatus | None = None) -> list[Booking]:
     bookings = find_by_provider_id(provider_id)
 
@@ -80,7 +80,7 @@ def get_provider_bookings(provider_id: UUID,status: BookingStatus | None = None)
 
     return bookings
 
-
+# service function to cancel a booking for a specific customer
 def cancel_booking(customer_id: UUID, booking_id: UUID) -> Booking:
     booking = get_booking_details(booking_id)
 
@@ -91,7 +91,7 @@ def cancel_booking(customer_id: UUID, booking_id: UUID) -> Booking:
 
     return change_booking_status(booking, BookingStatus.CANCELLED)
 
-
+# service function to accept a booking for a specific provider
 def accept_booking(provider_id: UUID, booking_id: UUID) -> Booking:
     booking = get_booking_details(booking_id)
 
@@ -102,7 +102,7 @@ def accept_booking(provider_id: UUID, booking_id: UUID) -> Booking:
 
     return change_booking_status(booking, BookingStatus.ACCEPTED)
 
-
+# service function to reject a booking for a specific provider
 def reject_booking(provider_id: UUID, booking_id: UUID) -> Booking:
     booking = get_booking_details(booking_id)
 
@@ -113,7 +113,7 @@ def reject_booking(provider_id: UUID, booking_id: UUID) -> Booking:
 
     return change_booking_status(booking, BookingStatus.REJECTED)
 
-
+# service function to start a booking for a specific provider
 def start_booking(provider_id: UUID, booking_id: UUID) -> Booking:
     booking = get_booking_details(booking_id)
 
@@ -124,7 +124,7 @@ def start_booking(provider_id: UUID, booking_id: UUID) -> Booking:
 
     return change_booking_status(booking, BookingStatus.IN_PROGRESS)
 
-
+# service function to complete a booking for a specific provider
 def complete_booking(provider_id: UUID, booking_id: UUID) -> Booking:
     booking = get_booking_details(booking_id)
 
@@ -135,19 +135,19 @@ def complete_booking(provider_id: UUID, booking_id: UUID) -> Booking:
 
     return change_booking_status(booking, BookingStatus.COMPLETED)
 
-
+# service function to change the status of a booking and update its timestamp
 def change_booking_status(booking: Booking, status: BookingStatus) -> Booking:
     booking.status = status
     booking.updated_at = datetime.now().isoformat(timespec="seconds")
 
     return update(booking)
 
-
+# service function to ensure that a customer owns a specific booking
 def ensure_customer_owns_booking(booking: Booking, customer_id: UUID) -> None:
     if booking.customer_id != customer_id:
         raise ValueError("You are not allowed to manage this booking")
 
-
+# service function to ensure that a provider owns a specific booking
 def ensure_provider_owns_booking(booking: Booking, provider_id: UUID) -> None:
     if booking.provider_id != provider_id:
         raise ValueError("You are not allowed to manage this booking")
