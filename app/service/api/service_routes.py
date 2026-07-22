@@ -16,7 +16,7 @@ from app.service.api.service_validator import validate_create_service_data
 
 service_bp = Blueprint("services", __name__, url_prefix="/services")
 
-
+# show the list of available services
 @service_bp.get("/")
 def list_services():
     services = get_available_services()
@@ -25,7 +25,7 @@ def list_services():
         services=services,
     )
 
-
+# show the list of available services with filters
 @service_bp.post("/")
 def list_services_with_filters():
     query = request.form.get("search", "")
@@ -38,6 +38,7 @@ def list_services_with_filters():
         search_query=query
     )
 
+# show the details of a specific service
 @service_bp.get("/<service_id>")
 def show_service_details(service_id):
     try:
@@ -52,7 +53,7 @@ def show_service_details(service_id):
         flash(str(error), "error")
         return redirect(url_for("services.list_services"))
 
-
+# show the list of services for the logged-in provider
 @service_bp.get("/provider/my-services")
 @login_required
 @role_required("PROVIDER")
@@ -66,6 +67,7 @@ def show_provider_services():
     )
 
 
+# show the create service page for providers
 @service_bp.get("/provider/create")
 @login_required
 @role_required("PROVIDER")
@@ -73,6 +75,7 @@ def show_create_service_page():
     return render_template("services/create.html")
 
 
+# handle the submission of the create service form for providers
 @service_bp.post("/provider/create")
 @login_required
 @role_required("PROVIDER")
@@ -121,6 +124,8 @@ def submit_create_service_form():
     flash("Service created successfully.", "success")
     return redirect(url_for("services.show_provider_services"))
 
+
+# show the delete service page for providers
 @service_bp.get("/provider/delete/<service_id>")
 @login_required
 @role_required("PROVIDER")

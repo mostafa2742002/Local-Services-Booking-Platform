@@ -16,7 +16,7 @@ from app.service.application.service_service import get_service_details
 
 review_bp = Blueprint("reviews", __name__, url_prefix="/reviews")
 
-
+# show the create review page for a specific booking
 @review_bp.get("/create/<booking_id>")
 @login_required
 @role_required("CUSTOMER")
@@ -53,7 +53,7 @@ def show_create_review_page(booking_id):
         flash(str(error), "error")
         return redirect(url_for("bookings.show_customer_bookings"))
 
-
+# handle the submission of the create review form
 @review_bp.post("/create/<booking_id>/<service_name>")
 @login_required
 @role_required("CUSTOMER")
@@ -118,7 +118,7 @@ def submit_create_review_form(booking_id, service_name):
         flash(str(error), "error")
         return redirect(url_for("bookings.show_customer_bookings"))
 
-
+# show the reviews for the logged-in customer
 @review_bp.get("/my-reviews")
 @login_required
 @role_required("CUSTOMER")
@@ -131,7 +131,7 @@ def show_customer_reviews():
         review_views=reviews
     )
 
-
+# helper function to build review view models
 def build_review_view_models(reviews):
     review_views = []
 
@@ -143,7 +143,7 @@ def build_review_view_models(reviews):
 
     return review_views
 
-
+# helper function to get the service name for a given service id
 def get_service_name(service_id):
     try:
         service = get_service_details(service_id)
@@ -151,7 +151,7 @@ def get_service_name(service_id):
     except ValueError:
         return "Unknown service"
 
-
+# helper function to parse a string into a UUID
 def parse_uuid(value: str) -> UUID | None:
     try:
         return UUID(value)

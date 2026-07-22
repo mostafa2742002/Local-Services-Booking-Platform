@@ -7,6 +7,7 @@ from app.review.infrastructure import review_repository
 from app.booking.infrastructure import booking_repository
 from app.service.infrastructure import service_repository
 
+# service function to get the admin dashboard data
 def get_admin_dashboard_data() -> dict:
     users = find_all_users()
     services = find_all_services()
@@ -24,6 +25,7 @@ def get_admin_dashboard_data() -> dict:
         "reviews": reviews
     }
 
+# service function to get the admin dashboard summary data
 def get_admin_dashboard_summary() -> dict:
     users = find_all_users()
     services = find_all_services()
@@ -37,7 +39,7 @@ def get_admin_dashboard_summary() -> dict:
         "reviews_count": len(reviews)
     }
 
-
+# service function to delete a user by id
 def delete_user_by_id(user_id: str) -> None:
     user = user_repository.find_by_id(user_id)
     if not user:
@@ -49,10 +51,7 @@ def delete_user_by_id(user_id: str) -> None:
     elif user.role.value == "CUSTOMER":
         handle_delete_customer(user_id)
         
-    
-    
-
-
+# delete all services, bookings, and reviews associated with a provider user
 def handle_delete_provider(user_id: str) -> None:
     # Delete all services associated with the provider
     services = find_all_services()
@@ -83,7 +82,7 @@ def handle_delete_provider(user_id: str) -> None:
     user_repository.delete_by_id(user_id)
     
 
-
+# delete all bookings and reviews associated with a customer user
 def handle_delete_customer(user_id: str) -> None:
     # Delete all bookings associated with the customer
     bookings = find_all_bookings()

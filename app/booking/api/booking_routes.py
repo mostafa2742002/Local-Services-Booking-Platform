@@ -21,7 +21,7 @@ from app.booking.api.booking_validator import validate_create_booking_data
 
 booking_bp = Blueprint("bookings", __name__, url_prefix="/bookings")
 
-
+# show the create booking page for a specific service
 @booking_bp.get("/create/<service_id>")
 @login_required
 @role_required("CUSTOMER")
@@ -44,7 +44,7 @@ def show_create_booking_page(service_id):
         flash(str(error), "error")
         return redirect(url_for("services.list_services"))
 
-
+# handle the submission of the create booking form
 @booking_bp.post("/create/<service_id>")
 @login_required
 @role_required("CUSTOMER")
@@ -104,7 +104,7 @@ def submit_create_booking_form(service_id):
     flash("Booking request created successfully.", "success")
     return redirect(url_for("bookings.show_customer_bookings"))
 
-
+# show the bookings for the logged-in customer
 @booking_bp.get("/my-bookings")
 @login_required
 @role_required("CUSTOMER")
@@ -137,7 +137,7 @@ def show_customer_bookings():
         selected_status=selected_status.lower()
     )
 
-
+# cancel a booking for the logged-in customer
 @booking_bp.post("/<booking_id>/cancel")
 @login_required
 @role_required("CUSTOMER")
@@ -163,7 +163,7 @@ def cancel_customer_booking(booking_id):
 
     return redirect(url_for("bookings.show_customer_bookings"))
 
-
+# show the bookings for the logged-in provider
 @booking_bp.get("/provider/requests")
 @login_required
 @role_required("PROVIDER")
@@ -207,7 +207,7 @@ def accept_provider_booking(booking_id):
         success_message="Booking accepted successfully."
     )
 
-
+# Reject a booking for the logged-in provider
 @booking_bp.post("/provider/<booking_id>/reject")
 @login_required
 @role_required("PROVIDER")
@@ -219,6 +219,7 @@ def reject_provider_booking(booking_id):
     )
 
 
+# Start a booking for the logged-in provider
 @booking_bp.post("/provider/<booking_id>/start")
 @login_required
 @role_required("PROVIDER")
@@ -229,7 +230,7 @@ def start_provider_booking(booking_id):
         success_message="Booking started successfully."
     )
 
-
+# Complete a booking for the logged-in provider
 @booking_bp.post("/provider/<booking_id>/complete")
 @login_required
 @role_required("PROVIDER")
@@ -240,7 +241,7 @@ def complete_provider_booking(booking_id):
         success_message="Booking completed successfully."
     )
 
-
+# Helper function to handle provider booking actions
 def handle_provider_booking_action(booking_id, action_function, success_message):
     parsed_booking_id = parse_uuid(booking_id)
 
@@ -263,7 +264,7 @@ def handle_provider_booking_action(booking_id, action_function, success_message)
 
     return redirect(url_for("bookings.show_provider_bookings"))
 
-
+# Helper function to parse a string into a UUID
 def parse_uuid(value: str) -> UUID | None:
     try:
         return UUID(value)

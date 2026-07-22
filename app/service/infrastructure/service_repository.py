@@ -7,7 +7,7 @@ from app.service.domain.local_service import LocalService
 
 DATA_FILE = Path("data/services.json")
 
-
+# function to convert a LocalService object to a dictionary for JSON serialization
 def service_to_dict(service: LocalService) -> dict:
     return {
         "id": str(service.id),
@@ -23,7 +23,7 @@ def service_to_dict(service: LocalService) -> dict:
         "updated_at": service.updated_at
     }
 
-
+# function to convert a dictionary back to a LocalService object
 def dict_to_service(data: dict) -> LocalService:
     return LocalService(
         id=UUID(data["id"]),
@@ -39,7 +39,7 @@ def dict_to_service(data: dict) -> LocalService:
         updated_at=data["updated_at"]
     )
 
-
+# function to load services from the JSON file, returning a list of LocalService objects
 def load_services() -> list[LocalService]:
     if not DATA_FILE.exists():
         DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -55,7 +55,7 @@ def load_services() -> list[LocalService]:
     services.reverse()
     return services
 
-
+# function to save a list of LocalService objects to the JSON file
 def save_services(services: list[LocalService]) -> None:
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 
@@ -63,11 +63,11 @@ def save_services(services: list[LocalService]) -> None:
 
     DATA_FILE.write_text(json.dumps(services_data, indent=4))
 
-
+# repository function to find all services
 def find_all() -> list[LocalService]:
     return load_services()
 
-
+# repository function to find all active services, optionally filtered by a search query and category
 def find_active_services(query: str = "", category: str = "") -> list[LocalService]:
     services = load_services()
 
@@ -87,7 +87,7 @@ def find_active_services(query: str = "", category: str = "") -> list[LocalServi
 
     return filtered_services
 
-
+# repository function to find a service by its ID
 def find_by_id(service_id: UUID) -> LocalService | None:
     services = load_services()
 
@@ -97,7 +97,7 @@ def find_by_id(service_id: UUID) -> LocalService | None:
 
     return None
 
-
+# repository function to find all services for a specific provider
 def find_by_provider_id(provider_id: UUID) -> list[LocalService]:
     services = load_services()
     services.reverse()  
@@ -108,7 +108,7 @@ def find_by_provider_id(provider_id: UUID) -> list[LocalService]:
         if service.provider_id == provider_id
     ]
 
-
+# repository function to save a new service
 def save(service: LocalService) -> LocalService:
     services = load_services()
     services.append(service)
@@ -116,7 +116,7 @@ def save(service: LocalService) -> LocalService:
 
     return service
 
-
+# repository function to update an existing service
 def update(service: LocalService) -> LocalService:
     services = load_services()
 
@@ -128,7 +128,7 @@ def update(service: LocalService) -> LocalService:
 
     raise ValueError("Service not found")
 
-
+# repository function to delete a service by its ID
 def delete(service: LocalService) -> None:
     services = load_services()
 
@@ -140,7 +140,7 @@ def delete(service: LocalService) -> None:
 
     raise ValueError("Service not found")
 
-
+# repository function to deletec service image file by its filename
 def delete_service_image(image_filename: str) -> None:
     image_path = Path("app/static/images/services") / image_filename
 

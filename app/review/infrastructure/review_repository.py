@@ -7,7 +7,7 @@ from app.review.domain.review import Review
 
 DATA_FILE = Path("data/reviews.json")
 
-
+# function to convert a Review object to a dictionary for JSON serialization
 def review_to_dict(review: Review) -> dict:
     return {
         "id": str(review.id),
@@ -22,7 +22,7 @@ def review_to_dict(review: Review) -> dict:
         "updated_at": review.updated_at
     }
 
-
+# function to convert a dictionary back to a Review object
 def dict_to_review(data: dict) -> Review:
     return Review(
         id=UUID(data["id"]),
@@ -37,7 +37,7 @@ def dict_to_review(data: dict) -> Review:
         updated_at=data["updated_at"]
     )
 
-
+# function to load reviews from the JSON file, returning a list of Review objects
 def load_reviews() -> list[Review]:
     if not DATA_FILE.exists():
         DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -53,7 +53,7 @@ def load_reviews() -> list[Review]:
     reviews.reverse()
     return reviews
 
-
+# function to save a list of Review objects to the JSON file
 def save_reviews(reviews: list[Review]) -> None:
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 
@@ -61,11 +61,11 @@ def save_reviews(reviews: list[Review]) -> None:
 
     DATA_FILE.write_text(json.dumps(reviews_data, indent=4))
 
-
+# repository function to find all reviews
 def find_all() -> list[Review]:
     return load_reviews()
 
-
+# repository function to find a review by its booking ID
 def find_by_booking_id(booking_id: UUID) -> Review | None:
     reviews = load_reviews()
 
@@ -75,7 +75,7 @@ def find_by_booking_id(booking_id: UUID) -> Review | None:
 
     return None
 
-
+# repository function to find all reviews for a specific customer
 def find_by_customer_id(customer_id: UUID) -> list[Review]:
     reviews = load_reviews()
     reviews.reverse()  
@@ -85,7 +85,7 @@ def find_by_customer_id(customer_id: UUID) -> list[Review]:
         if review.customer_id == customer_id
     ]
 
-
+# repository function to find all reviews for a specific provider
 def find_by_provider_id(provider_id: UUID) -> list[Review]:
     reviews = load_reviews()
     reviews.reverse()  
@@ -96,7 +96,7 @@ def find_by_provider_id(provider_id: UUID) -> list[Review]:
         if review.provider_id == provider_id
     ]
 
-
+# repository function to find all reviews for a specific service
 def find_by_service_id(service_id: UUID) -> list[Review]:
     reviews = load_reviews()
 
@@ -106,7 +106,7 @@ def find_by_service_id(service_id: UUID) -> list[Review]:
         if review.service_id == service_id
     ]
 
-
+# repository function to save a new review
 def save(review: Review) -> Review:
     reviews = load_reviews()
     reviews.append(review)
@@ -114,12 +114,13 @@ def save(review: Review) -> Review:
 
     return review
 
+# repository function to delete a review by its ID
 def delete_by_id(review_id: UUID) -> None:
     reviews = load_reviews()
     reviews = [review for review in reviews if review.id != review_id]
     save_reviews(reviews)
 
-
+# repository function to delete all reviews associated with a specific service
 def delete_service_reviews(service_id: UUID) -> None:
     reviews = load_reviews()
     reviews = [review for review in reviews if review.service_id != service_id]

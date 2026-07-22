@@ -7,7 +7,7 @@ from app.user.domain.user import User
 from app.user.domain.role import Role
 from app.user.infrastructure.user_repository import find_by_email, save
 
-
+# service function to register a new user
 def register_user(name: str, email: str, password: str, role: Role = Role.CUSTOMER) -> User:
     existing_user = find_by_email(email)
 
@@ -28,7 +28,7 @@ def register_user(name: str, email: str, password: str, role: Role = Role.CUSTOM
 
     return save(user)
 
-
+# service function to authenticate a user and return the user object if successful
 def login_user(email: str, password: str) -> User:
     user = find_by_email(email)
 

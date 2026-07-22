@@ -8,7 +8,7 @@ from app.service.application.service_service import toggle_service_active_status
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 
-
+# get the admin dashboard
 @admin_bp.get("/dashboard")
 @login_required
 @role_required("ADMIN")
@@ -20,6 +20,7 @@ def show_admin_dashboard():
         dashboard_data=dashboard_data
     )
 
+# delete a user by id
 @admin_bp.get("/delete_user/<user_id>")
 @login_required
 @role_required("ADMIN")
@@ -28,6 +29,7 @@ def delete_user(user_id):
     flash("User deleted successfully", "success")
     return redirect(url_for("admin.show_admin_dashboard"))
 
+# toggle the active status of a service by id
 @admin_bp.get("/active_switch/<service_id>")    
 @login_required
 @role_required("ADMIN")
