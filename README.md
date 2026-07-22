@@ -10,7 +10,7 @@ No extra Python modules are required beyond the dependencies already listed in `
 
 ## Project Checklist
 
-- [ ] It is available on GitHub.
+- [x] It is available on GitHub.
 - [x] It uses the Flask web framework.
   - Entry point: [run.py](run.py#L1)
   - App factory and blueprint registration: [app/__init__.py](app/__init__.py#L1)
@@ -37,8 +37,8 @@ No extra Python modules are required beyond the dependencies already listed in `
 - [x] It doesn't generate any error message even if the user enters a wrong input.
   - Invalid input is handled with validation and browser flash messages in [app/booking/api/booking_routes.py](app/booking/api/booking_routes.py#L64) and [app/service/api/service_routes.py](app/service/api/service_routes.py#L74)
 - [x] It is styled using your own CSS.
-- [ ] The code follows the code and style conventions as introduced in the course, is fully documented using comments and doesn't contain unused or experimental code.
-- [ ] All exercises have been completed as per the requirements and pushed to the respective GitHub repository.
+- [x] The code follows the code and style conventions as introduced in the course, is fully documented using comments and doesn't contain unused or experimental code.
+- [x] All exercises have been completed as per the requirements and pushed to the respective GitHub repository.
 
 ## Setup
 
